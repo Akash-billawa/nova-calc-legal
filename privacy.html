@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
     <title>Nova Calc • Privacy Policy</title>
     <meta name="description" content="Privacy Policy for Nova Calc" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -369,6 +371,11 @@
                 internet access for exchange rates or market data). These permissions are used only to
                 provide app functionality.
             </p>
+            <p>
+                NovaCalc may request “Draw over other apps” permission to provide floating calculator
+                functionality. This permission is only used to display the calculator overlay and does
+                not access or monitor other apps.
+            </p>
 
             <h2>3. Third-Party Services</h2>
             <p>
@@ -406,9 +413,8 @@
         <footer class="footer">© <span id="year"></span> Nova Calc. All rights reserved.</footer>
     </div>
 
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
+    <script src="site.js"></script>
 </body>
 
 </html>
+
