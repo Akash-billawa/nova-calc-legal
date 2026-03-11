@@ -2,495 +2,223 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nova Calc • Liquid Glass</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nova Calc • Home</title>
   <meta name="description"
     content="Nova Calc is a powerful multi-category calculator app with a modern liquid-glass experience." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+    rel="stylesheet" />
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root{
+      --bg-gradient-start:#f0ecff; --bg-gradient-end:#e0daf0;
+      --glass-bg:rgba(255,255,255,0.4); --glass-border:rgba(255,255,255,0.5);
+      --glass-shadow:rgba(140,130,180,0.1);
+      --text-primary:#2a2438; --text-secondary:#5a5268;
+      --accent:#5b8ff9; --accent-light:#6fa0ff; --accent-dark:#4a7ad9;
+      --font-display:'DM Serif Display', serif; --font-body:'Outfit', sans-serif;
+      --radius-lg:24px; --spacing-md:24px; --spacing-lg:32px;
     }
-
-    :root {
-      --bg-base: #e8e5f2;
-      --bg-gradient-start: #f0ecff;
-      --bg-gradient-end: #e0daf0;
-
-      --glass-bg: rgba(255, 255, 255, 0.4);
-      --glass-border: rgba(255, 255, 255, 0.5);
-      --glass-shadow: rgba(140, 130, 180, 0.1);
-
-      --text-primary: #2a2438;
-      --text-secondary: #5a5268;
-      --text-muted: #7a7388;
-
-      --accent: #5b8ff9;
-      --accent-dark: #4a7ad9;
-      --accent-light: #6fa0ff;
-
-      --pill-active-bg: rgba(91, 143, 249, 0.15);
-      --pill-active-border: rgba(91, 143, 249, 0.3);
-
-      --font-display: 'DM Serif Display', serif;
-      --font-body: 'Outfit', sans-serif;
-
-      --radius-sm: 12px;
-      --radius-md: 16px;
-      --radius-lg: 24px;
-      --radius-xl: 32px;
-
-      --spacing-xs: 8px;
-      --spacing-sm: 16px;
-      --spacing-md: 24px;
-      --spacing-lg: 32px;
-      --spacing-xl: 48px;
-      --spacing-2xl: 64px;
+    body{
+      font-family:var(--font-body);
+      background:linear-gradient(135deg,var(--bg-gradient-start),var(--bg-gradient-end));
+      color:var(--text-primary);
+      min-height:100vh; -webkit-font-smoothing:antialiased;
     }
-
-    body {
-      font-family: var(--font-body);
-      background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-      background-attachment: fixed;
-      color: var(--text-primary);
-      min-height: 100vh;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+    .shell{ max-width:1200px; margin:0 auto; padding:var(--spacing-md); display:flex; flex-direction:column; gap:var(--spacing-lg); min-height:100vh; }
+    .glass{
+      background:var(--glass-bg); backdrop-filter:blur(20px) saturate(180%); -webkit-backdrop-filter:blur(20px) saturate(180%);
+      border:1px solid var(--glass-border); box-shadow:0 8px 32px var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.6);
+      border-radius:var(--radius-lg); transition:all .25s;
     }
+    .topbar{ display:flex; align-items:center; justify-content:space-between; padding:16px 24px; position:sticky; top:16px; z-index:100; }
+    .brand{ display:flex; gap:12px; align-items:center; text-decoration:none; color:var(--text-primary); font-weight:600; }
+    .brand-badge{ width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; background:linear-gradient(135deg,var(--accent),var(--accent-light)); font-weight:600; box-shadow:0 4px 12px rgba(91,143,249,0.3); }
+    .nav-pills{ display:flex; gap:8px; }
+    .pill{ padding:10px 18px; border-radius:20px; text-decoration:none; color:var(--text-secondary); font-weight:500; }
+    .hero{ padding:48px 40px; text-align:center; }
+    .hero h1{ font-family:var(--font-display); font-size:clamp(36px,5vw,56px); font-weight:400; margin-bottom:16px; }
+    .hero h1 span{ color:var(--accent); font-style:italic; }
+    .meta-chip{ display:inline-block; padding:8px 16px; background:rgba(91,143,249,0.1); border-radius:20px; color:var(--accent-dark); margin-top:12px; }
 
-    .shell {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: var(--spacing-md);
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-lg);
-      min-height: 100vh;
-    }
+    /* Download area */
+    .download-panel{ margin-top:18px; padding:18px; display:flex; flex-direction:column; gap:12px; align-items:center; justify-content:center; }
+    .download-cta{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; justify-content:center; }
+    .btn{ padding:10px 18px; border-radius:12px; font-weight:500; text-decoration:none; display:inline-flex; align-items:center; gap:10px; cursor:pointer; border:1px solid transparent; }
+    .btn-solid{ background:linear-gradient(135deg,var(--accent),var(--accent-light)); color:white; box-shadow:0 4px 12px rgba(91,143,249,0.25); }
+    .btn-ghost{ background:rgba(255,255,255,0.18); color:var(--text-secondary); border:1px solid rgba(255,255,255,0.3); }
+    .asset-links{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:8px; }
+    .asset-links a{ padding:8px 12px; border-radius:10px; text-decoration:none; color:var(--text-secondary); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.02); font-size:13px; }
 
-    /* Glass effect utility */
-    .glass {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid var(--glass-border);
-      box-shadow:
-        0 8px 32px var(--glass-shadow),
-        inset 0 1px 0 rgba(255, 255, 255, 0.6);
-      border-radius: var(--radius-lg);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    .icon{ width:18px; height:18px; display:inline-block; flex-shrink:0; }
+    .github-icon{ width:18px; height:18px; fill:currentColor; }
+    .play-icon{ width:18px; height:18px; }
 
-    .glass:hover {
-      box-shadow:
-        0 12px 48px rgba(140, 130, 180, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.7);
-      transform: translateY(-2px);
-    }
-
-    /* Header */
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: var(--spacing-sm) var(--spacing-md);
-      gap: var(--spacing-md);
-      position: sticky;
-      top: var(--spacing-md);
-      z-index: 100;
-      animation: slideDown 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 600;
-      font-size: 18px;
-      color: var(--text-primary);
-      text-decoration: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .brand:hover {
-      opacity: 0.8;
-    }
-
-    .brand-badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-      color: white;
-      border-radius: 10px;
-      font-size: 20px;
-      font-weight: 500;
-      box-shadow: 0 4px 12px rgba(91, 143, 249, 0.3);
-    }
-
-    .nav-pills {
-      display: flex;
-      gap: var(--spacing-xs);
-      flex-wrap: wrap;
-    }
-
-    .pill {
-      padding: 10px 20px;
-      border-radius: 20px;
-      text-decoration: none;
-      color: var(--text-secondary);
-      font-size: 14px;
-      font-weight: 500;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 1px solid transparent;
-    }
-
-    .pill:hover {
-      background: rgba(255, 255, 255, 0.3);
-      color: var(--text-primary);
-    }
-
-    .pill.active {
-      background: var(--pill-active-bg);
-      color: var(--accent);
-      border-color: var(--pill-active-border);
-    }
-
-    /* Main content */
-    main {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-lg);
-      flex: 1;
-    }
-
-    /* Hero section */
-    .hero {
-      padding: var(--spacing-2xl) var(--spacing-xl);
-      text-align: center;
-      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 5vw, 56px);
-      font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: var(--spacing-md);
-      color: var(--text-primary);
-    }
-
-    .hero h1 span {
-      color: var(--accent);
-      font-style: italic;
-    }
-
-    .hero>p {
-      font-size: 18px;
-      color: var(--text-secondary);
-      max-width: 700px;
-      margin: 0 auto var(--spacing-md);
-      font-weight: 400;
-      line-height: 1.7;
-    }
-
-    .meta-chip {
-      display: inline-block;
-      padding: 10px 20px;
-      background: rgba(91, 143, 249, 0.1);
-      border: 1px solid rgba(91, 143, 249, 0.2);
-      border-radius: 20px;
-      font-size: 13px;
-      color: var(--accent-dark);
-      font-weight: 500;
-      letter-spacing: 0.3px;
-    }
-
-    /* Feature grid */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--spacing-md);
-    }
-
-    .feature {
-      padding: var(--spacing-lg);
-      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
-    }
-
-    .feature:nth-child(1) {
-      animation-delay: 0.3s;
-    }
-
-    .feature:nth-child(2) {
-      animation-delay: 0.4s;
-    }
-
-    .feature:nth-child(3) {
-      animation-delay: 0.5s;
-    }
-
-    .feature h3 {
-      font-family: var(--font-body);
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: var(--spacing-sm);
-      color: var(--text-primary);
-    }
-
-    .feature p {
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      font-weight: 400;
-    }
-
-    /* Legal panel */
-    .legal-panel {
-      padding: var(--spacing-lg);
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-lg);
-      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
-    }
-
-    .legal-panel>div:first-child strong {
-      display: block;
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: var(--spacing-xs);
-      color: var(--text-primary);
-    }
-
-    .support {
-      font-size: 15px;
-      color: var(--text-secondary);
-      margin-top: var(--spacing-xs);
-    }
-
-    .support a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    .support a:hover {
-      color: var(--accent-dark);
-      text-decoration: underline;
-    }
-
-    .legal-links {
-      display: flex;
-      gap: var(--spacing-sm);
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 12px 24px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 1px solid transparent;
-      cursor: pointer;
-      display: inline-block;
-    }
-
-    .btn-ghost {
-      color: var(--text-secondary);
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    .btn-ghost:hover {
-      background: rgba(255, 255, 255, 0.4);
-      color: var(--text-primary);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(140, 130, 180, 0.15);
-    }
-
-    .btn-solid {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-      color: white;
-      box-shadow: 0 4px 12px rgba(91, 143, 249, 0.3);
-    }
-
-    .btn-solid:hover {
-      box-shadow: 0 6px 20px rgba(91, 143, 249, 0.4);
-      transform: translateY(-2px);
-    }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: var(--spacing-md);
-      font-size: 14px;
-      color: var(--text-muted);
-      opacity: 0.8;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .shell {
-        padding: var(--spacing-sm);
-        gap: var(--spacing-md);
-      }
-
-      .topbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-sm);
-      }
-
-      .nav-pills {
-        width: 100%;
-        justify-content: flex-start;
-      }
-
-      .hero {
-        padding: var(--spacing-xl) var(--spacing-md);
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .legal-links {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-        text-align: center;
-      }
-    }
-
-    /* Accessibility */
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    /* Focus styles */
-    a:focus-visible,
-    button:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
+    @media(max-width:768px){
+      .hero{ padding:28px 18px; }
+      .btn{ width:100%; justify-content:center; }
+      .download-cta{ flex-direction:column; width:100%; }
+      .asset-links{ width:100%; justify-content:space-around; }
     }
   </style>
 </head>
 
 <body>
   <div class="shell">
-    <header class="topbar glass">
+    <header class="topbar glass" role="banner">
       <a class="brand" href="index.html" aria-label="Nova Calc home">
         <span class="brand-badge">∑</span>
         Nova Calc
       </a>
+
       <nav class="nav-pills" aria-label="Primary navigation">
-        <a class="pill active" href="index.html">Home</a>
+        <a class="pill" href="index.html">Home</a>
         <a class="pill" href="features.html">Features</a>
         <a class="pill" href="contact.html">Contact</a>
-        <a class="pill" href="privacy.html">Privacy</a>
-        <a class="pill" href="terms.html">Terms</a>
       </nav>
     </header>
 
     <main>
-      <section class="hero glass">
-        <h1>Think faster with <span>Nova Calc</span></h1>
-        <p>
+      <section class="hero glass" aria-labelledby="heroTitle">
+        <h1 id="heroTitle">Think faster with <span>Nova Calc</span></h1>
+        <p style="color:var(--text-secondary); max-width:720px; margin:10px auto 0;">
           Nova Calc is a powerful multi-category calculator app including converters,
           finance, business, crypto, fitness, and more — redesigned with a premium
           liquid-glass visual style.
         </p>
         <div class="meta-chip">Designed for clarity • Built for speed</div>
+
+        <!-- DOWNLOAD AREA -->
+        <div class="download-panel" role="region" aria-label="Downloads">
+          <div class="download-cta" role="group" aria-label="Primary downloads">
+            <!-- Play Store button (with Play icon SVG) -->
+            <a id="playStoreBtn" class="btn btn-solid" href="https://play.google.com/store/apps/details?id=com.nova.calc"
+              target="_blank" rel="noopener" aria-label="Get Nova Calc on Google Play">
+              <!-- Play SVG -->
+              <svg class="play-icon" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+                <path fill="white" d="M3.18 2.35A1.5 1.5 0 0 0 1 3.73V20.27a1.5 1.5 0 0 0 2.18 1.38l16.02-8.27a1.5 1.5 0 0 0 0-2.76L3.18 2.35z"/>
+              </svg>
+              Get on Google Play
+            </a>
+
+            <!-- Auto-detect button -->
+            <button id="autoDownloadBtn" class="btn btn-ghost" type="button" aria-label="Detect platform and download">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm1 14h-2v-2h2v2zm0-4h-2V6h2v6z"/>
+              </svg>
+              Download (Auto-detect)
+            </button>
+
+            <!-- GitHub release button (with GitHub icon SVG) -->
+            <a id="releasePageBtn" class="btn btn-ghost" href="https://github.com/Akash-billawa/NovaCalc/releases/latest"
+              target="_blank" rel="noopener" aria-label="Open GitHub release page">
+              <!-- GitHub SVG -->
+              <svg class="github-icon" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+                <path fill="currentColor"
+                  d="M12 .5C5.73.5.86 5.37.86 11.62c0 4.78 3.09 8.83 7.37 10.26.54.1.74-.23.74-.51 0-.25-.01-.92-.01-1.8-3 .66-3.64-1.37-3.64-1.37-.5-1.27-1.22-1.61-1.22-1.61-.99-.68.08-.67.08-.67 1.09.08 1.66 1.12 1.66 1.12.97 1.66 2.54 1.18 3.16.9.1-.7.38-1.18.69-1.45-2.4-.27-4.92-1.2-4.92-5.33 0-1.18.42-2.14 1.12-2.9-.11-.27-.49-1.36.11-2.83 0 0 .92-.29 3.02 1.11a10.3 10.3 0 0 1 5.5 0c2.1-1.4 3.02-1.11 3.02-1.11.6 1.47.22 2.56.11 2.83.7.76 1.12 1.72 1.12 2.9 0 4.14-2.53 5.06-4.94 5.32.39.34.73 1.02.73 2.06 0 1.49-.01 2.69-.01 3.05 0 .28.2.62.75.51 4.27-1.44 7.35-5.48 7.35-10.26C23.14 5.37 18.27.5 12 .5z"/>
+              </svg>
+              GitHub Release
+            </a>
+          </div>
+
+          <div class="asset-links" aria-label="Direct downloads">
+            <a id="winDirect"
+              href="https://github.com/Akash-billawa/NovaCalc/releases/latest/download/NovaCalc-Windows-v1.0.10.zip"
+              target="_blank" rel="noopener">Windows (.zip)</a>
+            <a id="appImageDirect"
+              href="https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.10+10-linux.AppImage"
+              target="_blank" rel="noopener">Linux (AppImage)</a>
+            <a id="debDirect"
+              href="https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.10+10-linux.deb"
+              target="_blank" rel="noopener">Linux (.deb)</a>
+          </div>
+        </div>
+        <!-- /DOWNLOAD AREA -->
       </section>
 
-      <section class="grid" aria-label="Feature highlights">
+      <section class="grid" aria-label="Feature highlights" style="margin-top:20px;">
         <article class="feature glass">
           <h3>All-in-one toolkit</h3>
-          <p>
-            Quickly switch between core calculator modes, unit converters, business tools,
-            and specialty utilities in one app.
-          </p>
+          <p style="color:var(--text-secondary)">Quickly switch between core calculator modes, unit converters, business tools, and specialty utilities.</p>
         </article>
         <article class="feature glass">
           <h3>Privacy-first by design</h3>
-          <p>
-            Your history and preferences are stored locally on-device whenever possible.
-            Transparent legal pages are available below.
-          </p>
+          <p style="color:var(--text-secondary)">Your history and preferences are stored locally on-device whenever possible.</p>
         </article>
         <article class="feature glass">
           <h3>Polished visual language</h3>
-          <p>
-            Layered blur, soft gradients, and responsive glass surfaces deliver an
-            Apple-inspired modern experience.
-          </p>
+          <p style="color:var(--text-secondary)">Layered blur, soft gradients, and responsive glass surfaces deliver a premium experience.</p>
         </article>
       </section>
 
-      <section class="legal-panel glass">
+      <section class="legal-panel glass" style="padding:20px; margin-top:18px;">
         <div>
           <strong>Explore & Support</strong>
-          <p class="support">
-            Support: <a href="mailto:novacalc.help@gmail.com">novacalc.help@gmail.com</a>
-          </p>
+          <p style="color:var(--text-secondary); margin-top:8px;">Support: <a href="mailto:novacalc.help@gmail.com">novacalc.help@gmail.com</a></p>
         </div>
-        <div class="legal-links">
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
           <a class="btn btn-ghost" href="features.html">View Features</a>
           <a class="btn btn-ghost" href="contact.html">Contact</a>
-          <a class="btn btn-ghost" href="privacy.html">Privacy Policy</a>
-          <a class="btn btn-solid" href="terms.html">Terms of Service</a>
+          <a class="btn btn-ghost" href="privacy.html">Privacy</a>
+          <a class="btn btn-solid" href="terms.html">Terms</a>
         </div>
       </section>
     </main>
 
-    <footer class="footer">© <span id="year"></span> Nova Calc. All rights reserved.</footer>
+    <footer class="footer" style="text-align:center; padding:18px; color:var(--text-secondary);">
+      © <span id="year"></span> Nova Calc. All rights reserved.
+    </footer>
   </div>
 
   <script>
+    const LINKS = {
+      playStore: "https://play.google.com/store/apps/details?id=com.nova.calc",
+      githubRelease: "https://github.com/Akash-billawa/NovaCalc/releases/latest",
+      windowsZip: "https://github.com/Akash-billawa/NovaCalc/releases/latest/download/NovaCalc-Windows-v1.0.10.zip",
+      linuxAppImage: "https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.10+10-linux.AppImage",
+      linuxDeb: "https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.10+10-linux.deb"
+    };
+
+    function autoDetectAndRedirect() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      const platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "";
+
+      if (/android/i.test(ua) || /Android/i.test(platform)) {
+        window.open(LINKS.playStore, "_blank", "noopener");
+        return;
+      }
+
+      if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+        window.open(LINKS.githubRelease, "_blank", "noopener");
+        return;
+      }
+
+      if (/Win(dows )?/i.test(platform) || /Windows NT/i.test(ua)) {
+        window.open(LINKS.windowsZip || LINKS.githubRelease, "_blank", "noopener");
+        return;
+      }
+
+      if (/Linux/i.test(platform) || /X11/i.test(platform)) {
+        window.open(LINKS.linuxAppImage || LINKS.linuxDeb || LINKS.githubRelease, "_blank", "noopener");
+        return;
+      }
+
+      window.open(LINKS.githubRelease, "_blank", "noopener");
+    }
+
+    document.getElementById("autoDownloadBtn").addEventListener("click", function (e) {
+      e.currentTarget.setAttribute("aria-busy", "true");
+      setTimeout(() => {
+        autoDetectAndRedirect();
+        e.currentTarget.removeAttribute("aria-busy");
+      }, 120);
+    });
+
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
