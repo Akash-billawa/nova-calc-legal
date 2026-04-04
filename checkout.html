@@ -4,33 +4,43 @@
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
+
 <script>
   const params = new URLSearchParams(window.location.search);
 
-  const orderId = params.get("order_id");
-  const deviceId = params.get("device_id");
-  const amount = params.get("amount");
-
   const options = {
-    key: "rzp_live_SP9EdHYjy2mszi", // your key
-    amount: amount,
+    key: "rzp_live_SZJDJRthgaQxuR", // 🔥 replace with your real key
+    order_id: params.get("order_id"),
+    amount: params.get("amount"),
     currency: "INR",
+
     name: "NovaCalc",
     description: "Unlock Premium",
-    order_id: orderId,
 
     handler: function (response) {
-      fetch("https://us-central1-novacalc-1019a.cloudfunctions.net/verifyDesktopPayment"), {
+      fetch("https://verifydesktoppayment-2wa5zywtyq-uc.a.run.app", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({
           razorpay_order_id: response.razorpay_order_id,
           razorpay_payment_id: response.razorpay_payment_id,
           razorpay_signature: response.razorpay_signature,
-          device_id: deviceId
+          device_id: params.get("device_id")
         })
-      }).then(() => {
-        alert("Payment Successful 🎉");
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.verified) {
+          alert("Payment successful 🎉");
+          window.close(); // optional
+        } else {
+          alert("Payment verification failed ❌");
+        }
+      })
+      .catch(() => {
+        alert("Server error during verification ❌");
       });
     }
   };
@@ -38,5 +48,6 @@
   const rzp = new Razorpay(options);
   rzp.open();
 </script>
+
 </body>
 </html>
