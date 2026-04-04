@@ -20,7 +20,7 @@
     order_id: orderId,
 
     handler: function (response) {
-      fetch("https://<YOUR_BACKEND_URL>/verifyDesktopPayment", {
+      fetch("https://us-central1-novacalc-1019a.cloudfunctions.net/verifyDesktopPayment"), {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
