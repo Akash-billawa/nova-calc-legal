@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nova Calc • Home</title>
+  <meta name="description" content="Nova Calc is a powerful multi-category calculator app with a modern liquid-glass experience." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-gradient-start: #f0ecff;
+      --bg-gradient-end: #e0daf0;
+      --glass-bg: rgba(255, 255, 255, 0.42);
+      --glass-border: rgba(255, 255, 255, 0.55);
+      --glass-shadow: rgba(140, 130, 180, 0.12);
+      --text-primary: #2a2438;
+      --text-secondary: #5a5268;
+      --accent: #5b8ff9;
+      --accent-light: #6fa0ff;
+      --accent-dark: #4a7ad9;
+      --font-display: "DM Serif Display", serif;
+      --font-body: "Outfit", sans-serif;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --spacing-md: 24px;
+      --spacing-lg: 32px;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      min-height: 100vh;
+    }
+
+    .shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing-md);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+      border-radius: var(--radius-lg);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 24px;
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      box-shadow: 0 4px 12px rgba(91, 143, 249, 0.28);
+      flex: 0 0 auto;
+    }
+
+    .nav-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      padding: 10px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .pill:hover {
+      background: rgba(255, 255, 255, 0.24);
+      transform: translateY(-1px);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+
+    .hero {
+      padding: 48px 40px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero p {
+      color: var(--text-secondary);
+      max-width: 720px;
+      margin: 10px auto 0;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .meta-chip {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(91, 143, 249, 0.1);
+      border-radius: 20px;
+      color: var(--accent-dark);
+      margin-top: 14px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .download-panel {
+      margin-top: 22px;
+      padding: 18px 0 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .download-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .btn {
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      min-height: 46px;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-solid {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: white;
+      box-shadow: 0 4px 12px rgba(91, 143, 249, 0.25);
+    }
+
+    .btn-solid:hover {
+      box-shadow: 0 8px 18px rgba(91, 143, 249, 0.30);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.22);
+      color: var(--text-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.30);
+    }
+
+    .asset-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .asset-links a {
+      padding: 8px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 13px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .asset-links a:hover {
+      background: rgba(255, 255, 255, 0.24);
+      transform: translateY(-1px);
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .github-icon {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .play-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .feature {
+      padding: 18px 18px 20px;
+      min-height: 100%;
+    }
+
+    .feature h3 {
+      font-size: 16px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .legal-panel {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .legal-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .legal-actions .btn {
+      min-height: 42px;
+      padding: 10px 16px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 8px 6px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-top: auto;
+    }
+
+    @media (max-width: 900px) {
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 36px 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .shell {
+        padding: 16px;
+        gap: 20px;
+      }
+
+      .topbar {
+        padding: 14px 16px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .brand {
+        justify-content: flex-start;
+      }
+
+      .nav-pills {
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: clamp(32px, 9vw, 44px);
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .download-cta {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .asset-links {
+        width: 100%;
+        flex-direction: column;
+      }
+
+      .asset-links a {
+        width: 100%;
+        text-align: center;
+      }
+
+      .legal-actions {
+        flex-direction: column;
+      }
+
+      .legal-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="shell">
+    <header class="topbar glass" role="banner">
+      <a class="brand" href="index.html" aria-label="Nova Calc home">
+        <span class="brand-badge">∑</span>
+        Nova Calc
+      </a>
+
+      <nav class="nav-pills" aria-label="Primary navigation">
+        <a class="pill" href="index.html">Home</a>
+        <a class="pill" href="features.html">Features</a>
+        <a class="pill" href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero glass" aria-labelledby="heroTitle">
+        <h1 id="heroTitle">Think faster with <span>Nova Calc</span></h1>
+
+        <p>
+          Nova Calc is a powerful multi-category calculator app including converters,
+          finance, business, crypto, fitness, and more — redesigned with a premium
+          liquid-glass visual style.
+        </p>
+
+        <div class="meta-chip">Designed for clarity • Built for speed</div>
+
+        <div class="download-panel" role="region" aria-label="Downloads">
+          <div class="download-cta" role="group" aria-label="Primary downloads">
+            <a
+              id="playStoreBtn"
+              class="btn btn-solid"
+              href="https://play.google.com/store/apps/details?id=com.nova.calc"
+              target="_blank"
+              rel="noopener"
+              aria-label="Get Nova Calc on Google Play"
+            >
+              <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="white" d="M3.18 2.35A1.5 1.5 0 0 0 1 3.73V20.27a1.5 1.5 0 0 0 2.18 1.38l16.02-8.27a1.5 1.5 0 0 0 0-2.76L3.18 2.35z"/>
+              </svg>
+              Get on Google Play
+            </a>
+
+            <button
+              id="autoDownloadBtn"
+              class="btn btn-ghost"
+              type="button"
+              aria-label="Detect platform and download"
+            >
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm1 14h-2v-2h2v2zm0-4h-2V6h2v6z"/>
+              </svg>
+              Download (Auto-detect)
+            </button>
+
+            <a
+              id="releasePageBtn"
+              class="btn btn-ghost"
+              href="https://github.com/Akash-billawa/NovaCalc/releases/latest"
+              target="_blank"
+              rel="noopener"
+              aria-label="Open GitHub release page"
+            >
+              <svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 .5C5.73.5.86 5.37.86 11.62c0 4.78 3.09 8.83 7.37 10.26.54.1.74-.23.74-.51 0-.25-.01-.92-.01-1.8-3 .66-3.64-1.37-3.64-1.37-.5-1.27-1.22-1.61-1.22-1.61-.99-.68.08-.67.08-.67 1.09.08 1.66 1.12 1.66 1.12.97 1.66 2.54 1.18 3.16.9.1-.7.38-1.18.69-1.45-2.4-.27-4.92-1.2-4.92-5.33 0-1.18.42-2.14 1.12-2.9-.11-.27-.49-1.36.11-2.83 0 0 .92-.29 3.02 1.11a10.3 10.3 0 0 1 5.5 0c2.1-1.4 3.02-1.11 3.02-1.11.6 1.47.22 2.56.11 2.83.7.76 1.12 1.72 1.12 2.9 0 4.14-2.53 5.06-4.94 5.32.39.34.73 1.02.73 2.06 0 1.49-.01 2.69-.01 3.05 0 .28.2.62.75.51 4.27-1.44 7.35-5.48 7.35-10.26C23.14 5.37 18.27.5 12 .5z"/>
+              </svg>
+              GitHub Release
+            </a>
+          </div>
+
+          <div class="asset-links" aria-label="Direct downloads">
+            <a
+              id="winDirect"
+              href="https://github.com/Akash-billawa/NovaCalc/releases/latest/download/NovaCalc-Setup.exe"
+              target="_blank"
+              rel="noopener"
+            >
+              Windows (.exe)
+            </a>
+            <a
+              id="appImageDirect"
+              href="https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.20+21-linux.AppImage"
+              target="_blank"
+              rel="noopener"
+            >
+              Linux (AppImage)
+            </a>
+            <a
+              id="debDirect"
+              href="https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.20+21-linux.deb"
+              target="_blank"
+              rel="noopener"
+            >
+              Linux (.deb)
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="features" aria-label="Feature highlights">
+        <article class="feature glass">
+          <h3>All-in-one toolkit</h3>
+          <p>
+            Quickly switch between core calculator modes, unit converters, business tools,
+            and specialty utilities.
+          </p>
+        </article>
+
+        <article class="feature glass">
+          <h3>Privacy-first by design</h3>
+          <p>
+            Your history and preferences are stored locally on-device whenever possible.
+          </p>
+        </article>
+
+        <article class="feature glass">
+          <h3>Polished visual language</h3>
+          <p>
+            Layered blur, soft gradients, and responsive glass surfaces deliver a premium experience.
+          </p>
+        </article>
+      </section>
+
+      <section class="legal-panel glass" aria-label="Explore and support">
+        <div>
+          <strong>Explore & Support</strong>
+          <p style="color: var(--text-secondary); margin-top: 8px;">
+            Support: <a href="mailto:novacalc.help@gmail.com">novacalc.help@gmail.com</a>
+          </p>
+        </div>
+
+        <div class="legal-actions">
+          <a class="btn btn-ghost" href="features.html">View Features</a>
+          <a class="btn btn-ghost" href="contact.html">Contact</a>
+          <a class="btn btn-ghost" href="privacy.html">Privacy</a>
+          <a class="btn btn-solid" href="terms.html">Terms</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Nova Calc. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    const LINKS = {
+      playStore: "https://play.google.com/store/apps/details?id=com.nova.calc",
+      githubRelease: "https://github.com/Akash-billawa/NovaCalc/releases/latest",
+      windowsExe: "https://github.com/Akash-billawa/NovaCalc/releases/latest/download/NovaCalc-Setup.exe",
+      linuxAppImage: "https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.20+21-linux.AppImage",
+      linuxDeb: "https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.20+21-linux.deb"
+    };
+
+    function autoDetectAndRedirect() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      const platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "";
+
+      if (/android/i.test(ua) || /Android/i.test(platform)) {
+        window.open(LINKS.playStore, "_blank", "noopener");
+        return;
+      }
+
+      if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+        window.open(LINKS.githubRelease, "_blank", "noopener");
+        return;
+      }
+
+      if (/Win(dows )?/i.test(platform) || /Windows NT/i.test(ua)) {
+        window.open(LINKS.windowsExe, "_blank", "noopener");
+        return;
+      }
+
+      if (/Linux/i.test(platform) || /X11/i.test(platform)) {
+        window.open(LINKS.linuxAppImage || LINKS.linuxDeb || LINKS.githubRelease, "_blank", "noopener");
+        return;
+      }
+
+      window.open(LINKS.githubRelease, "_blank", "noopener");
+    }
+
+    document.getElementById("autoDownloadBtn").addEventListener("click", function () {
+      this.setAttribute("aria-busy", "true");
+      setTimeout(() => {
+        autoDetectAndRedirect();
+        this.removeAttribute("aria-busy");
+      }, 120);
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
