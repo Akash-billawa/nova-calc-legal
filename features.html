@@ -267,7 +267,12 @@ body {
       font-weight: 500;
       box-shadow: 0 4px 12px rgba(91, 143, 249, 0.3);
     }
-
+    .brand-badge {
+      display: block;
+      object-fit: cover;
+      padding: 0;
+      background: transparent;
+    }
     .nav-pills {
       display: flex;
       gap: var(--spacing-xs);
@@ -808,8 +813,7 @@ body {
         align-items: flex-start;
         gap: var(--spacing-sm);
       }
-
-      .nav-pills {
+    .nav-pills {
         width: 100%;
         justify-content: flex-start;
       }
@@ -879,7 +883,7 @@ body {
   <div class="shell">
     <header class="topbar glass">
       <a class="brand" href="index.html" aria-label="NovaCalc home">
-        <span class="brand-badge">∑</span>
+        <img class="brand-badge" src="assets/novacalc-app-icon.png" alt="NovaCalc app icon" />
         NovaCalc
       </a>
     <nav class="nav-pills" aria-label="Primary navigation">
@@ -974,7 +978,7 @@ body {
     <footer>
       <div class="footer-content">
         <div class="footer-brand">
-          <span class="brand-badge small">∑</span>
+          <img class="brand-badge small" src="assets/novacalc-app-icon.png" alt="NovaCalc app icon" />
           <span>NovaCalc</span>
         </div>
         <div class="footer-links">
