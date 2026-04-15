@@ -951,12 +951,12 @@ footer {
               Windows (.exe)
             </a>
             <a
-              id="appImageDirect"
-              href="https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.20+21-linux.AppImage"
+              id="rpmDirect"
+              href="https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.20+21-linux.rpm"
               target="_blank"
               rel="noopener"
             >
-              Linux (AppImage)
+              Linux (.rpm)
             </a>
             <a
               id="debDirect"
@@ -1051,7 +1051,7 @@ footer {
       playStore: "https://play.google.com/store/apps/details?id=com.nova.calc",
       githubRelease: "https://github.com/Akash-billawa/NovaCalc/releases/latest",
       windowsExe: "https://github.com/Akash-billawa/NovaCalc/releases/latest/download/NovaCalc-Setup.exe",
-      linuxAppImage: "https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.20+21-linux.AppImage",
+      linuxRpm: "https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.20+21-linux.rpm",
       linuxDeb: "https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.20+21-linux.deb"
     };
 
@@ -1074,10 +1074,10 @@ footer {
         return;
       }
 
-      if (/Linux/i.test(platform) || /X11/i.test(platform)) {
-        window.open(LINKS.linuxAppImage || LINKS.linuxDeb || LINKS.githubRelease, "_blank", "noopener");
-        return;
-      }
+if (/Linux/i.test(platform) || /X11/i.test(platform)) {
+      window.open(LINKS.linuxRpm || LINKS.linuxDeb || LINKS.githubRelease, "_blank", "noopener");
+      return;
+    }
 
       window.open(LINKS.githubRelease, "_blank", "noopener");
     }
