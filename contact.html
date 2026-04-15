@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nova Calc • Contact</title>
-    <meta name="description" content="Contact and support information for Nova Calc" />
+    <title>NovaCalc • Contact</title>
+    <meta name="description" content="Contact and support information for NovaCalc" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -57,10 +57,26 @@
       --spacing-md: 24px;
       --spacing-lg: 32px;
       --spacing-xl: 48px;
-      --spacing-2xl: 64px;
-    }
+  --spacing-2xl: 64px;
+}
 
-        body {
+[data-theme="dark"] {
+  --bg-gradient-start: #1a1625;
+  --bg-gradient-end: #0f0d18;
+  --glass-bg: rgba(30, 25, 45, 0.5);
+  --glass-bg-hover: rgba(40, 35, 60, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-border-subtle: rgba(255, 255, 255, 0.08);
+  --glass-shadow: rgba(0, 0, 0, 0.3);
+  --glass-shadow-hover: rgba(0, 0, 0, 0.4);
+  --text-primary: #f0ecff;
+  --text-secondary: #b8b0d0;
+  --accent: #6fa0ff;
+  --accent-light: #8bb8ff;
+  --accent-dark: #5b8ff9;
+}
+
+body {
             font-family: var(--font-body);
             background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             background-attachment: fixed;
@@ -266,13 +282,52 @@
       transform: translateY(-2px);
     }
 
-    .pill.active {
-      background: rgba(91, 143, 249, 0.15);
-      border-color: rgba(91, 143, 249, 0.35);
-      color: var(--accent);
-    }
+.pill.active {
+  background: rgba(91, 143, 249, 0.15);
+  border-color: rgba(91, 143, 249, 0.35);
+  color: var(--accent);
+}
 
-        /* Main content */
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 18px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 12px var(--glass-shadow);
+}
+
+.theme-toggle:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%);
+  transform: scale(1.05) rotate(10deg);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .theme-toggle {
+  background: linear-gradient(135deg, rgba(91, 143, 249, 0.2) 0%, rgba(91, 143, 249, 0.1) 100%);
+  border-color: rgba(91, 143, 249, 0.3);
+  color: var(--accent);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background: linear-gradient(135deg, rgba(91, 143, 249, 0.3) 0%, rgba(91, 143, 249, 0.15) 100%);
+  box-shadow: 0 4px 20px rgba(91, 143, 249, 0.3);
+}
+
+[data-theme="dark"] .ambient-glow {
+  opacity: 0.5;
+}
+
+/* Main content */
         main {
             display: flex;
             flex-direction: column;
@@ -716,18 +771,21 @@
   <div class="ambient-glow"></div>
   <div class="shell">
     <header class="topbar glass">
-      <a class="brand" href="index.html" aria-label="Nova Calc home">
+      <a class="brand" href="index.html" aria-label="NovaCalc home">
         <span class="brand-badge">∑</span>
-        Nova Calc
+        NovaCalc
       </a>
-      <nav class="nav-pills" aria-label="Primary navigation">
-        <a class="pill" href="index.html">Home</a>
-        <a class="pill" href="features.html">Features</a>
-        <a class="pill active" href="contact.html">Contact</a>
-        <a class="pill" href="privacy.html">Privacy</a>
-        <a class="pill" href="terms.html">Terms</a>
-      </nav>
-    </header>
+    <nav class="nav-pills" aria-label="Primary navigation">
+      <a class="pill" href="index.html">Home</a>
+      <a class="pill" href="features.html">Features</a>
+      <a class="pill active" href="contact.html">Contact</a>
+      <a class="pill" href="privacy.html">Privacy</a>
+      <a class="pill" href="terms.html">Terms</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <i class="fas fa-moon"></i>
+    </button>
+  </header>
 
     <main>
       <section class="hero glass">
@@ -791,7 +849,7 @@
       <div class="footer-content">
         <div class="footer-brand">
           <span class="brand-badge small">∑</span>
-          <span>Nova Calc</span>
+          <span>NovaCalc</span>
         </div>
         <div class="footer-links">
           <a href="privacy.html">Privacy</a>
@@ -808,7 +866,7 @@
         </div>
       </div>
       <div class="footer-copyright">
-        © <span id="year"></span> Nova Calc. All rights reserved.
+        © <span id="year"></span> NovaCalc. All rights reserved.
       </div>
     </footer>
   </div>
@@ -845,8 +903,30 @@
       });
     }, observerOptions);
 
-    document.querySelectorAll('.feature').forEach(feature => observer.observe(feature));
-  </script>
+document.querySelectorAll('.feature').forEach(feature => observer.observe(feature));
+
+// Dark mode toggle
+const themeToggle = document.getElementById('themeToggle');
+const html = document.documentElement;
+const icon = themeToggle.querySelector('i');
+
+// Load saved theme
+const savedTheme = localStorage.getItem('theme') || 'light';
+html.setAttribute('data-theme', savedTheme);
+updateThemeIcon(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', newTheme);
+  localStorage.getItem('theme', newTheme);
+  updateThemeIcon(newTheme);
+});
+
+function updateThemeIcon(theme) {
+  icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+}
+</script>
 </body>
 
 </html>
