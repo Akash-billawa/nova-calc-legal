@@ -7,7 +7,8 @@
 
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
   <title>NovaCalc • Privacy Policy</title>
-  <meta name="description" content="Privacy Policy for NovaCalc" />
+  <meta name="description" content="Privacy Policy for NovaCalc app data, permissions, history, and support." />
+  <link rel="icon" href="assets/novacalc-app-icon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -757,17 +758,18 @@ body {
 
     <main class="legal-page glass">
       <h1>Privacy Policy</h1>
-      <p class="updated"><strong>Last updated:</strong> April 8, 2026</p>
+      <p class="updated"><strong>Last updated:</strong> April 15, 2026</p>
 
       <p>
         NovaCalc ("we", "our", or "us") respects your privacy. This Privacy Policy explains
-        how information is handled when you use the NovaCalc mobile application.
+        how information is handled when you use the NovaCalc application.
       </p>
 
       <h2>1. Information We Collect</h2>
       <p>
         NovaCalc is designed to work primarily on your device. Calculation history,
-        preferences, and app settings are stored locally on your device.
+        favorites, preferences, default units, default currency, fitness defaults,
+        and app settings are stored locally on your device.
       </p>
       <p>
         We do not sell personal information. We do not require account creation to use the app.
@@ -775,20 +777,27 @@ body {
 
       <h2>2. Device Permissions</h2>
       <p>
-        The app may request limited permissions needed for specific features (for example,
-        internet access for exchange rates or market data). These permissions are used only to
-        provide app functionality.
+        The app may request limited permissions needed for specific features. Android builds
+        declare internet, network-state, and Wi-Fi-state access for online app functions. Desktop
+        builds use online entitlement checks for unlock status. These permissions and checks are
+        used only to provide app functionality.
       </p>
       <p>
         NovaCalc may request "Draw over other apps" permission to provide floating calculator
         functionality. This permission is only used to display the calculator overlay and does
         not access or monitor other apps.
       </p>
+      <p>
+        Android builds also declare foreground-service permissions for the floating calculator
+        service, and legacy external-storage write access limited to Android 9 and below for
+        save flows.
+      </p>
 
       <h2>3. Third-Party Services</h2>
       <p>
-        If third-party services are used (such as app distribution platforms, analytics, or crash
-        reporting), those services may process data according to their own privacy policies.
+        If third-party services are used (such as app distribution platforms, email apps,
+        analytics, crash reporting, or desktop checkout/entitlement services), those services
+        may process data according to their own privacy policies.
       </p>
 
       <h2>4. Data Retention and Deletion</h2>
@@ -796,7 +805,8 @@ body {
         NovaCalc primarily stores data locally on your device. Calculation history is retained on
         your device until you delete it, clear the app's storage, or uninstall the app. To limit
         on-device retention, the app keeps up to 500 history items and removes older non-favorite
-        entries when that limit is reached.
+        entries when that limit is reached. Password-generator outputs are redacted in stored
+        history.
       </p>
       <p>
         You can delete stored calculator history from within the app by opening the History section
@@ -815,6 +825,10 @@ body {
       <p>
         We take reasonable steps to protect data handled by the app. However, no method of
         storage or transmission is 100% secure.
+      </p>
+      <p>
+        Desktop unlock checks use a device-bound identifier stored with secure storage where
+        available. Android Play Store installs can be treated as unlocked by the app.
       </p>
 
       <h2>6. Children's Privacy</h2>
