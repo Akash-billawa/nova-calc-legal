@@ -2,436 +2,720 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
-    <title>Nova Calc • Privacy Policy</title>
-    <meta name="description" content="Privacy Policy for Nova Calc" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
+  <title>Nova Calc • Privacy Policy</title>
+  <meta name="description" content="Privacy Policy for Nova Calc" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-        :root {
-            --bg-base: #e8e5f2;
-            --bg-gradient-start: #f0ecff;
-            --bg-gradient-end: #e0daf0;
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-            --glass-bg: rgba(255, 255, 255, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.5);
-            --glass-shadow: rgba(140, 130, 180, 0.1);
+    :root {
+      --bg-base: #e8e5f2;
+      --bg-gradient-start: #f0ecff;
+      --bg-gradient-end: #e0daf0;
 
-            --text-primary: #2a2438;
-            --text-secondary: #5a5268;
-            --text-muted: #7a7388;
+      --glass-bg: rgba(255, 255, 255, 0.25);
+      --glass-bg-hover: rgba(255, 255, 255, 0.35);
+      --glass-border: rgba(255, 255, 255, 0.65);
+      --glass-border-subtle: rgba(255, 255, 255, 0.35);
+      --glass-shadow: rgba(140, 130, 180, 0.18);
+      --glass-shadow-hover: rgba(140, 130, 180, 0.28);
+      --glass-blur: blur(24px) saturate(200%);
 
-            --accent: #5b8ff9;
-            --accent-dark: #4a7ad9;
-            --accent-light: #6fa0ff;
+      --text-primary: #2a2438;
+      --text-secondary: #5a5268;
+      --text-muted: #7a7388;
 
-            --pill-active-bg: rgba(91, 143, 249, 0.15);
-            --pill-active-border: rgba(91, 143, 249, 0.3);
+      --accent: #5b8ff9;
+      --accent-dark: #4a7ad9;
+      --accent-light: #6fa0ff;
 
-            --font-display: 'DM Serif Display', serif;
-            --font-body: 'Outfit', sans-serif;
+      --pill-active-bg: rgba(91, 143, 249, 0.15);
+      --pill-active-border: rgba(91, 143, 249, 0.3);
 
-            --radius-sm: 12px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --radius-xl: 32px;
+      --font-display: 'DM Serif Display', serif;
+      --font-body: 'Outfit', sans-serif;
 
-            --spacing-xs: 8px;
-            --spacing-sm: 16px;
-            --spacing-md: 24px;
-            --spacing-lg: 32px;
-            --spacing-xl: 48px;
-            --spacing-2xl: 64px;
-        }
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
 
-        body {
-            font-family: var(--font-body);
-            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-            background-attachment: fixed;
-            color: var(--text-primary);
-            min-height: 100vh;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+      --spacing-xs: 8px;
+      --spacing-sm: 16px;
+      --spacing-md: 24px;
+      --spacing-lg: 32px;
+      --spacing-xl: 48px;
+      --spacing-2xl: 64px;
+    }
 
-        .shell {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: var(--spacing-md);
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-lg);
-            min-height: 100vh;
-        }
+    body {
+      font-family: var(--font-body);
+      background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-        /* Glass effect utility */
-        .glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid var(--glass-border);
-            box-shadow:
-                0 8px 32px var(--glass-shadow),
-                inset 0 1px 0 rgba(255, 255, 255, 0.6);
-            border-radius: var(--radius-lg);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    .shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+      min-height: 100vh;
+    }
 
-        /* Header */
-        .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: var(--spacing-sm) var(--spacing-md);
-            gap: var(--spacing-md);
-            position: sticky;
-            top: var(--spacing-md);
-            z-index: 100;
-            animation: slideDown 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    /* Enhanced Glass effect utility */
+    .glass {
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.28) 0%,
+        rgba(255, 255, 255, 0.18) 50%,
+        rgba(255, 255, 255, 0.12) 100%
+      );
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-top-color: rgba(255, 255, 255, 0.85);
+      border-left-color: rgba(255, 255, 255, 0.75);
+      box-shadow:
+        0 4px 24px var(--glass-shadow),
+        0 8px 48px rgba(140, 130, 180, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-lg);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
+    .glass:hover {
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.38) 0%,
+        rgba(255, 255, 255, 0.25) 50%,
+        rgba(255, 255, 255, 0.18) 100%
+      );
+      box-shadow:
+        0 6px 32px var(--glass-shadow-hover),
+        0 12px 56px rgba(140, 130, 180, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .glass-subtle {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      border: 1px solid var(--glass-border-subtle);
+      border-radius: var(--radius-md);
+      box-shadow:
+        0 2px 16px rgba(140, 130, 180, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      transition: all 0.25s ease;
+    }
 
-        .topbar:hover {
-            box-shadow:
-                0 12px 48px rgba(140, 130, 180, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.7);
-            transform: translateY(-2px);
-        }
+    .glass-subtle:hover {
+      background: rgba(255, 255, 255, 0.22);
+      box-shadow:
+        0 4px 20px rgba(140, 130, 180, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 600;
-            font-size: 18px;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
+    .glass-dark {
+      background: linear-gradient(
+        135deg,
+        rgba(30, 25, 50, 0.35) 0%,
+        rgba(20, 15, 35, 0.25) 50%,
+        rgba(15, 10, 25, 0.2) 100%
+      );
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-top-color: rgba(255, 255, 255, 0.25);
+      box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-lg);
+    }
 
-        .brand:hover {
-            opacity: 0.8;
-        }
+    /* Scroll progress bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      z-index: 9999;
+      box-shadow: 0 0 10px var(--accent-light);
+    }
 
-        .brand-badge {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            color: white;
-            border-radius: 10px;
-            font-size: 20px;
-            font-weight: 500;
-            box-shadow: 0 4px 12px rgba(91, 143, 249, 0.3);
-        }
+    /* Ambient glow background */
+    .ambient-glow {
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(91, 143, 249, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(111, 160, 255, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(91, 143, 249, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+      animation: ambientPulse 15s ease-in-out infinite;
+    }
 
-        .nav-pills {
-            display: flex;
-            gap: var(--spacing-xs);
-            flex-wrap: wrap;
-        }
+    @keyframes ambientPulse {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+      50% { transform: scale(1.1) rotate(180deg); opacity: 0.8; }
+    }
 
-        .pill {
-            padding: 10px 20px;
-            border-radius: 20px;
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid transparent;
-        }
+    /* Header */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-sm) var(--spacing-md);
+      gap: var(--spacing-md);
+      position: sticky;
+      top: var(--spacing-md);
+      z-index: 100;
+      animation: slideDown 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-        .pill:hover {
-            background: rgba(255, 255, 255, 0.3);
-            color: var(--text-primary);
-        }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
 
-        .pill.active {
-            background: var(--pill-active-bg);
-            color: var(--accent);
-            border-color: var(--pill-active-border);
-        }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        /* Main content */
-        main {
-            flex: 1;
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
 
-        /* Legal page styling */
-        .legal-page {
-            padding: var(--spacing-xl);
-            max-width: 900px;
-            margin: 0 auto;
-            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
-        }
+    .brand:hover {
+      opacity: 0.8;
+    }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
+    .brand-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      color: white;
+      border-radius: 12px;
+      font-size: 20px;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(91, 143, 249, 0.28);
+      flex: 0 0 auto;
+    }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .nav-pills {
+      display: flex;
+      gap: var(--spacing-xs);
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
 
-        .legal-page h1 {
-            font-family: var(--font-display);
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-primary);
-        }
+    .pill {
+      padding: 10px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
 
-        .legal-page .updated {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: var(--spacing-xl);
-            padding-bottom: var(--spacing-md);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        }
+    .pill:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 4px 16px rgba(140, 130, 180, 0.1);
+      transform: translateY(-2px);
+    }
 
-        .legal-page h2 {
-            font-family: var(--font-body);
-            font-size: 24px;
-            font-weight: 600;
-            margin-top: var(--spacing-xl);
-            margin-bottom: var(--spacing-md);
-            color: var(--text-primary);
-        }
+    .pill.active {
+      background: rgba(91, 143, 249, 0.15);
+      border-color: rgba(91, 143, 249, 0.35);
+      color: var(--accent);
+    }
 
-        .legal-page p {
-            font-size: 16px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: var(--spacing-md);
-        }
+    /* Main content */
+    main {
+      flex: 1;
+    }
 
-        .legal-page a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+    /* Legal page styling */
+    .legal-page {
+      padding: var(--spacing-xl);
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+    }
 
-        .legal-page a:hover {
-            color: var(--accent-dark);
-            text-decoration: underline;
-        }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
 
-        .back-home {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            margin-top: var(--spacing-xl);
-            background: rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 12px;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 15px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .back-home:hover {
-            background: rgba(255, 255, 255, 0.5);
-            transform: translateX(-4px);
-            box-shadow: 0 4px 12px rgba(140, 130, 180, 0.15);
-        }
+    .legal-page h1 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: var(--spacing-sm);
+      color: var(--text-primary);
+    }
 
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: var(--spacing-md);
-            font-size: 14px;
-            color: var(--text-muted);
-            opacity: 0.8;
-        }
+    .legal-page .updated {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-xl);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .shell {
-                padding: var(--spacing-sm);
-                gap: var(--spacing-md);
-            }
+    .legal-page h2 {
+      font-family: var(--font-body);
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: var(--spacing-xl);
+      margin-bottom: var(--spacing-md);
+      color: var(--text-primary);
+    }
 
-            .topbar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: var(--spacing-sm);
-            }
+    .legal-page p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: var(--spacing-md);
+    }
 
-            .nav-pills {
-                width: 100%;
-                justify-content: flex-start;
-            }
+    .legal-page a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
 
-            .legal-page {
-                padding: var(--spacing-lg);
-            }
+    .legal-page a:hover {
+      color: var(--accent-dark);
+      text-decoration: underline;
+    }
 
-            .legal-page h1 {
-                font-size: 32px;
-            }
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      margin-top: var(--spacing-xl);
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.12) 100%
+      );
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 14px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-            .legal-page h2 {
-                font-size: 20px;
-                margin-top: var(--spacing-lg);
-            }
-        }
+    .back-home:hover {
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.18) 100%
+      );
+      border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 20px rgba(140, 130, 180, 0.12);
+      transform: translateX(-4px);
+    }
 
-        /* Accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
+    /* Enhanced Footer */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-top: auto;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.08) 100%
+      );
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-top-color: rgba(255, 255, 255, 0.4);
+      border-radius: var(--radius-lg);
+      box-shadow:
+        0 4px 24px rgba(140, 130, 180, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
 
-        /* Focus styles */
-        a:focus-visible,
-        button:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-    </style>
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 16px;
+    }
+
+    .footer-brand .brand-badge.small {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      font-size: 14px;
+      box-shadow: 0 4px 12px rgba(91, 143, 249, 0.25);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 8px;
+    }
+
+    .footer-links a {
+      padding: 8px 16px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 14px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.35);
+      color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: var(--text-secondary);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      background: linear-gradient(135deg, rgba(91, 143, 249, 0.2) 0%, rgba(91, 143, 249, 0.1) 100%);
+      border-color: rgba(91, 143, 249, 0.35);
+      color: var(--accent);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 4px 16px rgba(91, 143, 249, 0.2);
+    }
+
+    .footer-social i {
+      font-size: 18px;
+    }
+
+    .footer-copyright {
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 13px;
+      color: var(--text-secondary);
+      opacity: 0.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .shell {
+        padding: var(--spacing-sm);
+        gap: var(--spacing-md);
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+      }
+
+      .nav-pills {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .legal-page {
+        padding: var(--spacing-lg);
+      }
+
+      .legal-page h1 {
+        font-size: 32px;
+      }
+
+      .legal-page h2 {
+        font-size: 20px;
+        margin-top: var(--spacing-lg);
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .footer-links a {
+        padding: 6px 12px;
+        font-size: 13px;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Focus styles */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="shell">
-        <header class="topbar glass">
-            <a class="brand" href="index.html" aria-label="Nova Calc home">
-                <span class="brand-badge">∑</span>
-                Nova Calc
-            </a>
-            <nav class="nav-pills" aria-label="Primary navigation">
-                <a class="pill" href="index.html">Home</a>
-                <a class="pill" href="features.html">Features</a>
-                <a class="pill" href="contact.html">Contact</a>
-                <a class="pill active" href="privacy.html">Privacy</a>
-                <a class="pill" href="terms.html">Terms</a>
-            </nav>
-        </header>
+  <div class="scroll-progress"></div>
+  <div class="ambient-glow"></div>
+  <div class="shell">
+    <header class="topbar glass" role="banner">
+      <a class="brand" href="index.html" aria-label="Nova Calc home">
+        <span class="brand-badge">∑</span>
+        Nova Calc
+      </a>
+      <nav class="nav-pills" aria-label="Primary navigation">
+        <a class="pill" href="index.html">Home</a>
+        <a class="pill" href="features.html">Features</a>
+        <a class="pill" href="contact.html">Contact</a>
+        <a class="pill active" href="privacy.html">Privacy</a>
+        <a class="pill" href="terms.html">Terms</a>
+      </nav>
+    </header>
 
-        <main class="legal-page glass">
-            <h1>Privacy Policy</h1>
-            <p class="updated"><strong>Last updated:</strong> April 8, 2026</p>
+    <main class="legal-page glass">
+      <h1>Privacy Policy</h1>
+      <p class="updated"><strong>Last updated:</strong> April 8, 2026</p>
 
-            <p>
-                Nova Calc ("we", "our", or "us") respects your privacy. This Privacy Policy explains
-                how information is handled when you use the Nova Calc mobile application.
-            </p>
+      <p>
+        Nova Calc ("we", "our", or "us") respects your privacy. This Privacy Policy explains
+        how information is handled when you use the Nova Calc mobile application.
+      </p>
 
-            <h2>1. Information We Collect</h2>
-            <p>
-                Nova Calc is designed to work primarily on your device. Calculation history,
-                preferences, and app settings are stored locally on your device.
-            </p>
-            <p>
-                We do not sell personal information. We do not require account creation to use the app.
-            </p>
+      <h2>1. Information We Collect</h2>
+      <p>
+        Nova Calc is designed to work primarily on your device. Calculation history,
+        preferences, and app settings are stored locally on your device.
+      </p>
+      <p>
+        We do not sell personal information. We do not require account creation to use the app.
+      </p>
 
-            <h2>2. Device Permissions</h2>
-            <p>
-                The app may request limited permissions needed for specific features (for example,
-                internet access for exchange rates or market data). These permissions are used only to
-                provide app functionality.
-            </p>
-            <p>
-                NovaCalc may request “Draw over other apps” permission to provide floating calculator
-                functionality. This permission is only used to display the calculator overlay and does
-                not access or monitor other apps.
-            </p>
+      <h2>2. Device Permissions</h2>
+      <p>
+        The app may request limited permissions needed for specific features (for example,
+        internet access for exchange rates or market data). These permissions are used only to
+        provide app functionality.
+      </p>
+      <p>
+        NovaCalc may request "Draw over other apps" permission to provide floating calculator
+        functionality. This permission is only used to display the calculator overlay and does
+        not access or monitor other apps.
+      </p>
 
-            <h2>3. Third-Party Services</h2>
-            <p>
-                If third-party services are used (such as app distribution platforms, analytics, or crash
-                reporting), those services may process data according to their own privacy policies.
-            </p>
+      <h2>3. Third-Party Services</h2>
+      <p>
+        If third-party services are used (such as app distribution platforms, analytics, or crash
+        reporting), those services may process data according to their own privacy policies.
+      </p>
 
-            <h2>4. Data Retention and Deletion</h2>
-            <p>
-                Nova Calc primarily stores data locally on your device. Calculation history is retained on
-                your device until you delete it, clear the app's storage, or uninstall the app. To limit
-                on-device retention, the app keeps up to 500 history items and removes older non-favorite
-                entries when that limit is reached.
-            </p>
-            <p>
-                You can delete stored calculator history from within the app by opening the History section
-                and removing individual entries or clearing history. You can also delete locally stored app
-                data at any time by clearing Nova Calc's app storage in your device settings or by
-                uninstalling the app.
-            </p>
-            <p>
-                If third-party services process technical data such as crash logs or analytics events, those
-                providers retain that data according to their own policies. If you need help with a deletion
-                request related to data processed by a third-party service, contact us at
-                <a href="mailto:novacalc.help@gmail.com">novacalc.help@gmail.com</a>.
-            </p>
+      <h2>4. Data Retention and Deletion</h2>
+      <p>
+        Nova Calc primarily stores data locally on your device. Calculation history is retained on
+        your device until you delete it, clear the app's storage, or uninstall the app. To limit
+        on-device retention, the app keeps up to 500 history items and removes older non-favorite
+        entries when that limit is reached.
+      </p>
+      <p>
+        You can delete stored calculator history from within the app by opening the History section
+        and removing individual entries or clearing history. You can also delete locally stored app
+        data at any time by clearing Nova Calc's app storage in your device settings or by
+        uninstalling the app.
+      </p>
+      <p>
+        If third-party services process technical data such as crash logs or analytics events, those
+        providers retain that data according to their own policies. If you need help with a deletion
+        request related to data processed by a third-party service, contact us at
+        <a href="mailto:novacalc.help@gmail.com">novacalc.help@gmail.com</a>.
+      </p>
 
-            <h2>5. Data Security</h2>
-            <p>
-                We take reasonable steps to protect data handled by the app. However, no method of
-                storage or transmission is 100% secure.
-            </p>
+      <h2>5. Data Security</h2>
+      <p>
+        We take reasonable steps to protect data handled by the app. However, no method of
+        storage or transmission is 100% secure.
+      </p>
 
-            <h2>6. Children's Privacy</h2>
-            <p>
-                Nova Calc is not directed at children under 13. We do not knowingly collect personal
-                information from children.
-            </p>
+      <h2>6. Children's Privacy</h2>
+      <p>
+        Nova Calc is not directed at children under 13. We do not knowingly collect personal
+        information from children.
+      </p>
 
-            <h2>7. Changes to This Policy</h2>
-            <p>
-                We may update this Privacy Policy from time to time. Updates will be posted on this page
-                with a revised "Last updated" date.
-            </p>
+      <h2>7. Changes to This Policy</h2>
+      <p>
+        We may update this Privacy Policy from time to time. Updates will be posted on this page
+        with a revised "Last updated" date.
+      </p>
 
-            <h2>8. Contact Us</h2>
-            <p>
-                If you have any questions about this Privacy Policy, contact us at:
-                <a href="mailto:novacalc.help@gmail.com">novacalc.help@gmail.com</a>
-            </p>
+      <h2>8. Contact Us</h2>
+      <p>
+        If you have any questions about this Privacy Policy, contact us at:
+        <a href="mailto:novacalc.help@gmail.com">novacalc.help@gmail.com</a>
+      </p>
 
-            <a class="back-home" href="index.html">← Back to Home</a>
-        </main>
+      <a class="back-home" href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </main>
 
-        <footer class="footer">© 2026 Nova Calc. All rights reserved.</footer>
-    </div>
+    <footer>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="brand-badge small">∑</span>
+          <span>Nova Calc</span>
+        </div>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-social">
+          <a href="https://github.com/Akash-billawa/NovaCalc" target="_blank" rel="noopener" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.nova.calc" target="_blank" rel="noopener" aria-label="Google Play">
+            <i class="fab fa-google-play"></i>
+          </a>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        © <span id="year"></span> Nova Calc. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Scroll progress bar
+    const scrollProgress = document.querySelector('.scroll-progress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      scrollProgress.style.width = scrollPercent + '%';
+    });
+
+    // Set copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Animate legal page on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const legalPage = document.querySelector('.legal-page');
+      if (legalPage) {
+        legalPage.style.opacity = '0';
+        legalPage.style.transform = 'translateY(30px)';
+        legalPage.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+        
+        setTimeout(() => {
+          legalPage.style.opacity = '1';
+          legalPage.style.transform = 'translateY(0)';
+        }, 100);
+      }
+    });
+  </script>
 </body>
 
 </html>
