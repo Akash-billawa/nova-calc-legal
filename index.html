@@ -7,12 +7,12 @@
   <meta name="description" content="NovaCalc is a multipurpose calculator app for everyday math, unit conversion, graphing, local history, finance, wellness, business, utility, and construction tools." />
   <meta name="theme-color" content="#5b8ff9" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://akash-billawa.github.io/nova-calc-legal/" />
+  <link rel="canonical" href="https://nova-calc-two.vercel.app/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="NovaCalc - Multipurpose Calculator App" />
   <meta property="og:description" content="Calculator, converters, graphing, local history, and practical tools for finance, wellness, business, utilities, and construction." />
-  <meta property="og:url" content="https://akash-billawa.github.io/nova-calc-legal/" />
-  <meta property="og:image" content="https://akash-billawa.github.io/nova-calc-legal/assets/novacalc-app-icon.png" />
+  <meta property="og:url" content="https://nova-calc-two.vercel.app/" />
+  <meta property="og:image" content="https://nova-calc-two.vercel.app/assets/novacalc-app-icon.png" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="NovaCalc - Multipurpose Calculator App" />
   <meta name="twitter:description" content="Everyday math, conversions, graphing, history, and specialized calculators in one app." />
@@ -32,7 +32,7 @@
       "operatingSystem": "Android, Windows, Linux",
       "softwareVersion": "1.0.24+27",
       "description": "A multipurpose calculator app with calculator, converters, graphing, local history, finance, wellness, business, utility, and construction tools.",
-      "url": "https://akash-billawa.github.io/nova-calc-legal/",
+      "url": "https://nova-calc-two.vercel.app/",
       "downloadUrl": "https://play.google.com/store/apps/details?id=com.nova.calc",
       "codeRepository": "https://github.com/Akash-billawa/NovaCalc",
       "offers": {
@@ -43,7 +43,7 @@
       "publisher": {
         "@type": "Organization",
         "name": "NovaCalc",
-        "url": "https://akash-billawa.github.io/nova-calc-legal/"
+        "url": "https://nova-calc-two.vercel.app/"
       }
     }
   </script>
@@ -618,7 +618,8 @@ main {
       height: 18px;
     }
 
-    .features {
+    .features,
+    .grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
@@ -679,24 +680,6 @@ main {
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent), var(--accent-light));
       box-shadow: 0 0 0 4px rgba(91, 143, 249, 0.12);
-    }
-
-    .legal-panel {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .legal-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .legal-actions .btn {
-      min-height: 42px;
-      padding: 10px 16px;
     }
 
 footer {
@@ -1031,7 +1014,8 @@ footer {
     padding: 12px 16px;
   }
 
-  .features {
+  .features,
+  .grid {
     grid-template-columns: 1fr;
   }
 
@@ -1046,18 +1030,6 @@ footer {
 
   .feature-icon i {
     font-size: 20px;
-  }
-
-  .legal-panel {
-    padding: 20px;
-  }
-
-  .legal-actions {
-    flex-direction: column;
-  }
-
-  .legal-actions .btn {
-    width: 100%;
   }
 
   .footer-content {
@@ -1282,21 +1254,6 @@ footer {
         </ul>
       </section>
 
-      <section class="legal-panel glass" aria-label="Explore and support">
-        <div>
-          <strong>Explore & Support</strong>
-          <p style="color: var(--text-secondary); margin-top: 8px;">
-            Support: <a href="mailto:novacalc.help@gmail.com">novacalc.help@gmail.com</a>
-          </p>
-        </div>
-
-        <div class="legal-actions">
-          <a class="btn btn-ghost" href="features.html">View Features</a>
-          <a class="btn btn-ghost" href="contact.html">Contact</a>
-          <a class="btn btn-ghost" href="privacy.html">Privacy</a>
-          <a class="btn btn-solid" href="terms.html">Terms</a>
-        </div>
-      </section>
     </main>
 
 <footer>
