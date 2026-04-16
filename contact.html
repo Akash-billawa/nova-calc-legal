@@ -4,15 +4,42 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NovaCalc • Contact</title>
-    <meta name="description" content="NovaCalc support email and app feedback details." />
+    <title>Contact NovaCalc - Support, Feedback, and Bug Reports</title>
+    <meta name="description" content="Contact NovaCalc support for app help, bug reports, feature requests, download questions, privacy questions, and website feedback." />
+    <meta name="theme-color" content="#5b8ff9" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://akash-billawa.github.io/nova-calc-legal/contact.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Contact NovaCalc Support" />
+    <meta property="og:description" content="Get help with NovaCalc, report bugs, request features, or ask about downloads, privacy, and terms." />
+    <meta property="og:url" content="https://akash-billawa.github.io/nova-calc-legal/contact.html" />
+    <meta property="og:image" content="https://akash-billawa.github.io/nova-calc-legal/assets/novacalc-app-icon.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Contact NovaCalc Support" />
+    <meta name="twitter:description" content="Support, feedback, bug reports, feature requests, download help, and policy questions." />
     <link rel="icon" href="assets/novacalc-app-icon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/novacalc-app-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact NovaCalc Support",
+      "url": "https://akash-billawa.github.io/nova-calc-legal/contact.html",
+      "description": "Support contact details for NovaCalc app help, feedback, bug reports, feature requests, downloads, privacy, and terms questions.",
+      "email": "novacalc.help@gmail.com",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "NovaCalc",
+        "url": "https://akash-billawa.github.io/nova-calc-legal/"
+      }
+    }
+  </script>
 
     <style>
         * {
@@ -97,6 +124,25 @@ body {
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: 16px;
+            top: 16px;
+            z-index: 1000;
+            transform: translateY(-140%);
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: var(--text-primary);
+            color: var(--bg-gradient-start);
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.2s ease;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
         }
 
         .shell {
@@ -525,25 +571,30 @@ body {
 
         .list {
             list-style: none;
+            display: grid;
+            gap: 12px;
+            margin-top: 0;
             margin-bottom: var(--spacing-lg);
         }
 
         .list li {
             font-size: 16px;
             color: var(--text-secondary);
-            padding: var(--spacing-sm) 0;
-            padding-left: 28px;
+            padding: 0 0 0 30px;
             position: relative;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
         .list li::before {
-            content: "✓";
+            content: "";
             position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 18px;
+            left: 3px;
+            top: 0.72em;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            box-shadow: 0 0 0 4px rgba(91, 143, 249, 0.12);
         }
 
         .button-row {
@@ -886,6 +937,7 @@ body {
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="scroll-progress"></div>
   <div class="ambient-glow"></div>
   <div class="shell">
@@ -906,7 +958,7 @@ body {
     </button>
   </header>
 
-    <main>
+    <main id="main">
       <section class="hero glass">
         <h1>We're here to <span>help</span></h1>
         <p>
@@ -1035,6 +1087,16 @@ body {
           <a class="btn btn-ghost" href="index.html">Back Home</a>
         </div>
       </section>
+
+      <section class="panel glass">
+        <h2>Support quality</h2>
+        <ul class="list">
+          <li>Reports with exact inputs, expected results, screenshots, and platform details are easier to reproduce and prioritize.</li>
+          <li>Feature requests are most useful when they describe the real calculation problem, not only the name of a missing tool.</li>
+          <li>Download issues should mention the selected platform and whether the user started from Google Play, GitHub, or the website.</li>
+          <li>Privacy and terms questions should point to the relevant page section so the reply can address the exact concern.</li>
+        </ul>
+      </section>
     </main>
 
     <footer class="footer">
@@ -1070,32 +1132,37 @@ body {
     window.addEventListener('scroll', () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       scrollProgress.style.width = scrollPercent + '%';
     });
 
-    document.querySelectorAll('.feature').forEach((feature, index) => {
-      feature.style.opacity = '0';
-      feature.style.transform = 'translateY(30px)';
-      feature.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-      feature.style.transitionDelay = (index * 100) + 'ms';
-    });
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
+    if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+      document.querySelectorAll('.feature').forEach((feature, index) => {
+        feature.style.opacity = '0';
+        feature.style.transform = 'translateY(30px)';
+        feature.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        feature.style.transitionDelay = (index * 80) + 'ms';
       });
-    }, observerOptions);
 
-document.querySelectorAll('.feature').forEach(feature => observer.observe(feature));
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.feature').forEach(feature => observer.observe(feature));
+    }
 
 // Dark mode toggle
 const themeToggle = document.getElementById('themeToggle');

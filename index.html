@@ -3,14 +3,50 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NovaCalc • Home</title>
-  <meta name="description" content="NovaCalc is a smart multipurpose calculator app with calculator, converter, graph, history, and settings workflows." />
+  <title>NovaCalc - Calculator, Converters, Graphs, and Everyday Tools</title>
+  <meta name="description" content="NovaCalc is a multipurpose calculator app for everyday math, unit conversion, graphing, local history, finance, wellness, business, utility, and construction tools." />
+  <meta name="theme-color" content="#5b8ff9" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://akash-billawa.github.io/nova-calc-legal/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="NovaCalc - Multipurpose Calculator App" />
+  <meta property="og:description" content="Calculator, converters, graphing, local history, and practical tools for finance, wellness, business, utilities, and construction." />
+  <meta property="og:url" content="https://akash-billawa.github.io/nova-calc-legal/" />
+  <meta property="og:image" content="https://akash-billawa.github.io/nova-calc-legal/assets/novacalc-app-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="NovaCalc - Multipurpose Calculator App" />
+  <meta name="twitter:description" content="Everyday math, conversions, graphing, history, and specialized calculators in one app." />
   <link rel="icon" href="assets/novacalc-app-icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/novacalc-app-icon.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "NovaCalc",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Android, Windows, Linux",
+      "softwareVersion": "1.0.24+27",
+      "description": "A multipurpose calculator app with calculator, converters, graphing, local history, finance, wellness, business, utility, and construction tools.",
+      "url": "https://akash-billawa.github.io/nova-calc-legal/",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.nova.calc",
+      "codeRepository": "https://github.com/Akash-billawa/NovaCalc",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "NovaCalc",
+        "url": "https://akash-billawa.github.io/nova-calc-legal/"
+      }
+    }
+  </script>
 
   <style>
     * {
@@ -80,6 +116,25 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       min-height: 100vh;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      z-index: 1000;
+      transform: translateY(-140%);
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: var(--text-primary);
+      color: var(--bg-gradient-start);
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.2s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
     }
 
     .shell {
@@ -586,6 +641,46 @@ main {
       line-height: 1.6;
     }
 
+    .panel {
+      padding: clamp(22px, 4vw, 36px);
+    }
+
+    .panel h2 {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 4vw, 34px);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      color: var(--text-primary);
+    }
+
+    .list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin: 0;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 28px;
+      color: var(--text-secondary);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .list li::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 0.72em;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      box-shadow: 0 0 0 4px rgba(91, 143, 249, 0.12);
+    }
+
     .legal-panel {
       padding: 20px;
       display: flex;
@@ -984,6 +1079,7 @@ footer {
 </head>
 
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="scroll-progress"></div>
 <div class="ambient-glow"></div>
 <div class="shell">
@@ -1005,7 +1101,7 @@ footer {
       </button>
     </header>
 
-    <main>
+    <main id="main">
       <section class="hero glass" aria-labelledby="heroTitle">
         <h1 id="heroTitle">Think faster with <span>NovaCalc</span></h1>
 
@@ -1018,7 +1114,7 @@ footer {
           rebuilding the same calculation from scratch.
         </p>
 
-        <div class="meta-chip">Version 1.0.23+26 • Android package com.nova.calc</div>
+        <div class="meta-chip">Mobile version 1.0.24+27 • Android package com.nova.calc</div>
 
         <div class="download-panel" role="region" aria-label="Downloads">
           <div class="download-cta" role="group" aria-label="Primary downloads">
@@ -1074,19 +1170,11 @@ footer {
             </a>
             <a
               id="rpmDirect"
-              href="https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.20+21-linux.rpm"
+              href="https://github.com/Akash-billawa/NovaCalc/releases/latest"
               target="_blank"
               rel="noopener"
             >
-              Linux (.rpm)
-            </a>
-            <a
-              id="debDirect"
-              href="https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.20+21-linux.deb"
-              target="_blank"
-              rel="noopener"
-            >
-              Linux (.deb)
+              Linux packages
             </a>
           </div>
         </div>
@@ -1183,6 +1271,17 @@ footer {
         </article>
       </section>
 
+      <section class="panel glass">
+        <h2>Built for trust</h2>
+        <ul class="list">
+          <li>Local-first history keeps recent calculations useful without making an account the center of the experience.</li>
+          <li>Clear tool categories reduce guesswork when moving from a simple calculation to a specialized estimate.</li>
+          <li>Platform-specific download paths send Android users to Google Play and desktop users to the latest release options.</li>
+          <li>Privacy, terms, and support links are always available from the site footer and support panel.</li>
+          <li>Results are presented as calculation aids, with policy pages setting clear expectations for professional, medical, financial, or construction decisions.</li>
+        </ul>
+      </section>
+
       <section class="legal-panel glass" aria-label="Explore and support">
         <div>
           <strong>Explore & Support</strong>
@@ -1231,8 +1330,7 @@ footer {
       playStore: "https://play.google.com/store/apps/details?id=com.nova.calc",
       githubRelease: "https://github.com/Akash-billawa/NovaCalc/releases/latest",
       windowsExe: "https://github.com/Akash-billawa/NovaCalc/releases/latest/download/NovaCalc-Setup.exe",
-      linuxRpm: "https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.20+21-linux.rpm",
-      linuxDeb: "https://github.com/Akash-billawa/NovaCalc/releases/latest/download/nova_calc-1.0.20+21-linux.deb"
+      linuxPackages: "https://github.com/Akash-billawa/NovaCalc/releases/latest"
     };
 
     function autoDetectAndRedirect() {
@@ -1255,7 +1353,7 @@ footer {
       }
 
 if (/Linux/i.test(platform) || /X11/i.test(platform)) {
-      window.open(LINKS.linuxRpm || LINKS.linuxDeb || LINKS.githubRelease, "_blank", "noopener");
+      window.open(LINKS.linuxPackages, "_blank", "noopener");
       return;
     }
 
@@ -1298,32 +1396,37 @@ const scrollProgress = document.querySelector('.scroll-progress');
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
+  const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
   scrollProgress.style.width = scrollPercent + '%';
 });
 
-document.querySelectorAll('.feature').forEach((feature, index) => {
-  feature.style.opacity = '0';
-  feature.style.transform = 'translateY(30px)';
-  feature.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-  feature.style.transitionDelay = (index * 100) + 'ms';
-});
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
+if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+  document.querySelectorAll('.feature').forEach((feature, index) => {
+    feature.style.opacity = '0';
+    feature.style.transform = 'translateY(30px)';
+    feature.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+    feature.style.transitionDelay = (index * 80) + 'ms';
   });
-}, observerOptions);
 
-document.querySelectorAll('.feature').forEach(feature => observer.observe(feature));
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.feature').forEach(feature => observer.observe(feature));
+}
 
 const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('[data-nav]').forEach(link => {

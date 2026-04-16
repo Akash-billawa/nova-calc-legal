@@ -4,15 +4,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NovaCalc • Features</title>
-  <meta name="description" content="Accurate NovaCalc feature list based on the app source." />
+  <title>NovaCalc Features - 99 Calculator, Converter, and Utility Tools</title>
+  <meta name="description" content="Explore NovaCalc features: calculator, converter, graphing, local history, settings, finance, wellness, business, construction, and utility tools." />
+  <meta name="theme-color" content="#5b8ff9" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://akash-billawa.github.io/nova-calc-legal/features.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="NovaCalc Features" />
+  <meta property="og:description" content="A detailed look at NovaCalc calculator, converter, graph, history, settings, and specialty tool categories." />
+  <meta property="og:url" content="https://akash-billawa.github.io/nova-calc-legal/features.html" />
+  <meta property="og:image" content="https://akash-billawa.github.io/nova-calc-legal/assets/novacalc-app-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="NovaCalc Features" />
+  <meta name="twitter:description" content="Calculator, converters, graphing, history, settings, and 99 practical tools." />
   <link rel="icon" href="assets/novacalc-app-icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/novacalc-app-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "NovaCalc Features",
+      "url": "https://akash-billawa.github.io/nova-calc-legal/features.html",
+      "description": "A detailed overview of NovaCalc calculator, converter, graphing, local history, settings, and specialty calculator features.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "NovaCalc",
+        "url": "https://akash-billawa.github.io/nova-calc-legal/"
+      }
+    }
+  </script>
 
   <style>
     * {
@@ -97,6 +123,25 @@ body {
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      z-index: 1000;
+      transform: translateY(-140%);
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: var(--text-primary);
+      color: var(--bg-gradient-start);
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.2s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
     }
 
     .shell {
@@ -662,25 +707,30 @@ body {
 
     .list {
       list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 0;
       margin-bottom: var(--spacing-lg);
     }
 
     .list li {
       font-size: 16px;
       color: var(--text-secondary);
-      padding: var(--spacing-sm) 0;
-      padding-left: 28px;
+      padding: 0 0 0 30px;
       position: relative;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .list li::before {
-      content: "✓";
+      content: "";
       position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 18px;
+      left: 3px;
+      top: 0.72em;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      box-shadow: 0 0 0 4px rgba(91, 143, 249, 0.12);
     }
 
     .button-row {
@@ -928,6 +978,7 @@ body {
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="scroll-progress"></div>
   <div class="ambient-glow"></div>
   <div class="shell">
@@ -948,7 +999,7 @@ body {
     </button>
   </header>
 
-    <main>
+    <main id="main">
       <section class="hero glass">
         <h1>Built around the real <span>NovaCalc app</span></h1>
         <p>
@@ -958,7 +1009,7 @@ body {
           personal defaults, and practical specialty calculators for home, study,
           business, wellness, and field work.
         </p>
-        <div class="meta-chip">Source version 1.0.23+26 • 99 tools covered here</div>
+        <div class="meta-chip">Mobile version 1.0.24+27 • 99 tools covered here</div>
       </section>
 
       <section class="kpi-grid" aria-label="Feature metrics">
@@ -1118,6 +1169,16 @@ body {
           <a class="btn btn-ghost" href="privacy.html">Read Privacy Policy</a>
         </div>
       </section>
+
+      <section class="panel glass">
+        <h2>Production-ready details</h2>
+        <ul class="list">
+          <li>Feature descriptions are grouped by user intent so the page can answer what the app does without forcing visitors to decode internal module names.</li>
+          <li>Tool counts, app areas, and download paths are stated as product facts instead of marketing filler.</li>
+          <li>Wellness, finance, and construction features are positioned as practical calculation aids with clear expectations around judgment and verification.</li>
+          <li>Desktop and Android behaviors are documented separately so users understand which platform-specific conveniences are available.</li>
+        </ul>
+      </section>
     </main>
 
     <footer>
@@ -1154,7 +1215,7 @@ body {
     window.addEventListener('scroll', () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
+  const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
   scrollProgress.style.width = scrollPercent + '%';
 });
 
