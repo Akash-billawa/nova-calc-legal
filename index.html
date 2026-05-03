@@ -1284,6 +1284,17 @@ footer {
   </div>
 
   <script>
+    // Set theme immediately to prevent FOUC before app.js loads
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const themeToggle = document.getElementById('themeToggle');
+      if (themeToggle) {
+        const icon = themeToggle.querySelector('i');
+        if (icon) icon.className = savedTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+      }
+    })();
+
     const LINKS = {
       playStore: "https://play.google.com/store/apps/details?id=com.nova.calc",
       githubRelease: "https://github.com/Akash-billawa/NovaCalc/releases/latest",
@@ -1310,10 +1321,10 @@ footer {
         return;
       }
 
-if (/Linux/i.test(platform) || /X11/i.test(platform)) {
-      window.open(LINKS.linuxPackages, "_blank", "noopener");
-      return;
-    }
+      if (/Linux/i.test(platform) || /X11/i.test(platform)) {
+        window.open(LINKS.linuxPackages, "_blank", "noopener");
+        return;
+      }
 
       window.open(LINKS.githubRelease, "_blank", "noopener");
     }
@@ -1326,76 +1337,8 @@ if (/Linux/i.test(platform) || /X11/i.test(platform)) {
       }, 120);
     });
 
-document.getElementById("year").textContent = new Date().getFullYear();
-
-// Dark mode toggle
-const themeToggle = document.getElementById('themeToggle');
-const html = document.documentElement;
-const icon = themeToggle.querySelector('i');
-
-// Load saved theme
-const savedTheme = localStorage.getItem('theme') || 'light';
-html.setAttribute('data-theme', savedTheme);
-updateThemeIcon(savedTheme);
-
-themeToggle.addEventListener('click', () => {
-  const currentTheme = html.getAttribute('data-theme');
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-  html.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-  updateThemeIcon(newTheme);
-});
-
-function updateThemeIcon(theme) {
-  icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-}
-
-const scrollProgress = document.querySelector('.scroll-progress');
-window.addEventListener('scroll', () => {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-  scrollProgress.style.width = scrollPercent + '%';
-});
-
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-  document.querySelectorAll('.feature').forEach((feature, index) => {
-    feature.style.opacity = '0';
-    feature.style.transform = 'translateY(30px)';
-    feature.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-    feature.style.transitionDelay = (index * 80) + 'ms';
-  });
-
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.feature').forEach(feature => observer.observe(feature));
-}
-
-const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-document.querySelectorAll('[data-nav]').forEach(link => {
-  const linkPage = link.getAttribute('href');
-  if (linkPage === currentPage) {
-    link.classList.add('active');
-  } else {
-    link.classList.remove('active');
-  }
-});
-</script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 <script src="js/app.js" defer></script>
 </body>
 </html>

@@ -13,6 +13,7 @@
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/enhancements.css" />
 
   <style>
     * {
@@ -844,40 +845,21 @@ body {
     </footer>
   </div>
 
-  <script>
+<script>
+    // Set theme immediately to prevent FOUC before app.js loads
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const themeToggle = document.getElementById('themeToggle');
+      if (themeToggle) {
+        const icon = themeToggle.querySelector('i');
+        if (icon) icon.className = savedTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+      }
+    })();
+
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Scroll progress bar
-    const scrollProgress = document.querySelector('.scroll-progress');
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
-  scrollProgress.style.width = scrollPercent + '%';
-});
-
-// Dark mode toggle
-const themeToggle = document.getElementById('themeToggle');
-const html = document.documentElement;
-const icon = themeToggle.querySelector('i');
-
-// Load saved theme
-const savedTheme = localStorage.getItem('theme') || 'light';
-html.setAttribute('data-theme', savedTheme);
-updateThemeIcon(savedTheme);
-
-themeToggle.addEventListener('click', () => {
-  const currentTheme = html.getAttribute('data-theme');
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-  html.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-  updateThemeIcon(newTheme);
-});
-
-function updateThemeIcon(theme) {
-  icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-}
-</script>
+  </script>
+  <script src="js/app.js" defer></script>
 </body>
 
 </html>
