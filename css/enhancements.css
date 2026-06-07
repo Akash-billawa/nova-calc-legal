@@ -336,31 +336,335 @@ body,
 }
 
 /* ============================================================================
+   SKIP LINK
+   Hidden until keyboard focus — helps keyboard / screen-reader users skip
+   the topbar straight to the main content.
+   ============================================================================ */
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 12px;
+  z-index: 10000;
+  padding: 12px 18px;
+  background: var(--accent, #5b8ff9);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 6px 20px rgba(91, 143, 249, 0.45);
+  transition: top 0.2s ease;
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 0;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* ============================================================================
+   MOBILE NAV TOGGLE
+   Injected by js/app.js. Hidden on desktop; shown on narrow viewports.
+   ============================================================================ */
+
+.mobile-nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  border-radius: 14px;
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.4));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text-primary, #2a2438);
+  font-size: 18px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  box-shadow: 0 2px 12px var(--glass-shadow, rgba(140, 130, 180, 0.18));
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.mobile-nav-toggle:active {
+  transform: scale(0.96);
+}
+.mobile-nav-toggle > i {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-nav-toggle .fa-times { opacity: 0; transform: rotate(-90deg) scale(0.7); }
+.mobile-nav-toggle[aria-expanded="true"] .fa-bars  { opacity: 0; transform: rotate(90deg) scale(0.7); }
+.mobile-nav-toggle[aria-expanded="true"] .fa-times { opacity: 1; transform: rotate(0) scale(1); }
+
+[data-theme="dark"] .mobile-nav-toggle {
+  background: linear-gradient(135deg, rgba(94, 231, 255, 0.18) 0%, rgba(124, 92, 255, 0.1) 100%);
+  border-color: rgba(94, 231, 255, 0.32);
+  color: var(--accent, #5ee7ff);
+}
+
+/* ============================================================================
+   MOBILE MENU OVERLAY (behind the slide-down panel)
+   ============================================================================ */
+
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 10, 17, 0.45);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 97;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.mobile-nav-overlay.visible { opacity: 1; }
+
+/* When nav is open, prevent background scroll on iOS / Android */
+body.nav-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* ============================================================================
    MOBILE OPTIMIZATIONS
    ============================================================================ */
 
+@media (max-width: 1024px) {
+  /* Slightly tighter shells on tablets — gives content more breathing room. */
+  .shell { padding: 20px; gap: 24px; }
+  .footer-content { gap: 20px; }
+}
+
 @media (max-width: 768px) {
-  /* Reduce animation complexity on mobile */
+  /* ----- Base mobile resets ----- */
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    /* 16px base font prevents iOS auto-zoom on form input focus. */
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  /* Suppress the ugly grey flash some Android browsers show on tap. */
+  a, button, .btn, .pill, .feature, .theme-toggle, .mobile-nav-toggle,
+  .footer-links a, .footer-social a, .asset-links a {
+    -webkit-tap-highlight-color: transparent;
+    /* Removes the 300ms tap delay on older mobile browsers. */
+    touch-action: manipulation;
+  }
+
+  /* ----- Reduce animation complexity on mobile ----- */
   .animate-on-scroll {
     opacity: 1;
     transform: none;
     transition: none;
   }
+  .ambient-glow { display: none; }
 
-  .ambient-glow {
-    display: none;
+  /* ----- Topbar: single row, brand + hamburger, no nav pills inline ----- */
+  .topbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    gap: 12px;
+    position: sticky;
+    top: 12px;
+  }
+  .topbar .brand {
+    justify-content: flex-start;
+    font-size: 17px;
+  }
+  .topbar .brand-badge {
+    width: 34px; height: 34px;
+  }
+  /* Hide inline theme toggle in the topbar — moved into the mobile menu. */
+  .topbar > .theme-toggle { display: none; }
+
+  /* ----- Show hamburger ----- */
+  .mobile-nav-toggle { display: flex; }
+  .mobile-nav-overlay { display: block; }
+
+  /* ----- Nav pills: collapse to a slide-down panel ----- */
+  .nav-pills {
+    position: fixed;
+    top: 72px;            /* just below the topbar */
+    left: 12px;
+    right: 12px;
+    z-index: 99;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 6px;
+    padding: 14px;
+    border-radius: 18px;
+    background: linear-gradient(
+      135deg,
+      var(--glass-highlight, rgba(255, 255, 255, 0.34)) 0%,
+      var(--glass-bg, rgba(255, 255, 255, 0.18)) 60%,
+      var(--glass-lowlight, rgba(255, 255, 255, 0.12)) 100%
+    );
+    backdrop-filter: var(--glass-blur, blur(20px) saturate(180%));
+    -webkit-backdrop-filter: var(--glass-blur, blur(20px) saturate(180%));
+    border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.4));
+    border-top-color: var(--glass-highlight-strong, rgba(255, 255, 255, 0.75));
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.22);
+    transform: translateY(-12px) scale(0.97);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.2s ease;
+    max-height: calc(100vh - 96px - env(safe-area-inset-bottom, 0));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-pills.open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  /* Each pill becomes a full-width tap target. */
+  .nav-pills .pill {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    min-height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+  }
+  .nav-pills .pill.active {
+    background: var(--pill-active-bg, rgba(91, 143, 249, 0.18));
+    border-color: var(--pill-active-border, rgba(91, 143, 249, 0.4));
+  }
+  /* Theme toggle inside the menu — single tap target. */
+  .nav-pills .theme-toggle-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 18px;
+    min-height: 48px;
+    border-radius: 12px;
+    margin-top: 6px;
+    border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.3));
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary, #5a5268);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .nav-pills .theme-toggle-mobile i { font-size: 16px; }
+  [data-theme="dark"] .nav-pills .theme-toggle-mobile {
+    background: linear-gradient(135deg, rgba(15, 23, 38, 0.46) 0%, rgba(8, 13, 24, 0.32) 100%);
+    border-color: rgba(196, 232, 255, 0.12);
   }
 
-  /* Smoother scrolling */
-  html {
-    scroll-behavior: smooth;
-  }
+  /* ----- Hero / typography ----- */
+  .hero { padding: 32px 20px; }
+  .hero h1 { font-size: clamp(28px, 8vw, 40px); line-height: 1.15; }
+  .hero p  { font-size: 16px; line-height: 1.6; }
 
-  /* Better touch feedback */
-  .btn:active {
-    transform: scale(0.97);
-    transition: transform 0.1s ease;
+  /* ----- Buttons become full-width and tappable ----- */
+  .btn {
+    width: 100%;
+    min-height: 52px;
+    padding: 14px 20px;
+    font-size: 16px;
+    text-align: center;
   }
+  .button-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .button-row .btn { width: 100%; }
+
+  .download-cta { flex-direction: column; width: 100%; gap: 10px; }
+  .download-cta .btn { width: 100%; }
+
+  .asset-links { width: 100%; flex-direction: column; gap: 8px; }
+  .asset-links a { width: 100%; text-align: center; padding: 14px 16px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; }
+
+  /* ----- Grids collapse to a single column ----- */
+  .features,
+  .grid { grid-template-columns: 1fr; }
+  .feature { padding: 24px 20px; }
+  .feature h3 { font-size: 18px; }
+  .feature p  { font-size: 15px; }
+  .feature-icon { width: 48px; height: 48px; }
+  .feature-icon i { font-size: 20px; }
+
+  .panel { padding: 24px 20px; }
+  .panel h2 { font-size: 20px; }
+
+  .download-panel { padding: 18px 16px; }
+
+  /* ----- Legal pages ----- */
+  .legal-page { padding: 28px 20px; }
+  .legal-page h1 { font-size: 32px; line-height: 1.15; }
+  .legal-page h2 { font-size: 20px; margin-top: 32px; }
+  .legal-page h3 { font-size: 17px; }
+  .legal-page p  { font-size: 16px; line-height: 1.7; }
+  .legal-page li { font-size: 15px; }
+  .feature-card { padding: 18px 16px; }
+
+  /* ----- Footer ----- */
+  footer { padding: 28px 20px; }
+  .footer-content { flex-direction: column; gap: 16px; text-align: center; }
+  .footer-brand { justify-content: center; }
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .footer-links a {
+    min-height: 44px;
+    padding: 12px 16px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .footer-social {
+    justify-content: center;
+    gap: 12px;
+  }
+  .footer-social a {
+    width: 48px;
+    height: 48px;
+  }
+  .footer-social i { font-size: 18px; }
+
+  /* ----- Back-home link ----- */
+  .back-home {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    padding: 14px 20px;
+  }
+}
+
+/* Extra-narrow phones (≤ 380 px) — tighten padding so content never
+   feels cramped on the smallest common viewports (iPhone SE, etc.). */
+@media (max-width: 380px) {
+  .shell { padding: 12px; }
+  .topbar { padding: 10px 12px; }
+  .hero { padding: 24px 16px; }
+  .feature { padding: 20px 16px; }
+  .panel { padding: 20px 16px; }
+  .legal-page { padding: 24px 16px; }
+  .legal-page h1 { font-size: 28px; }
+  .feature-card { padding: 16px 14px; }
+  .pill { font-size: 15px; }
 }
 
 /* ============================================================================

@@ -468,6 +468,140 @@
   };
 
   // ============================================================================
+  // SKIP LINK INJECTION
+  // Adds a "Skip to main content" link for keyboard / screen-reader users
+  // if the page didn't already ship one.
+  // ============================================================================
+
+  const SkipLink = {
+    init() {
+      if (document.querySelector('.skip-link')) return;
+
+      const main = document.querySelector('main');
+      if (!main) return;
+      if (!main.id) main.id = 'main';
+
+      const link = document.createElement('a');
+      link.className = 'skip-link';
+      link.href = '#' + main.id;
+      link.textContent = 'Skip to content';
+      document.body.insertBefore(link, document.body.firstChild);
+    }
+  };
+
+  // ============================================================================
+  // MOBILE NAVIGATION
+  // Injects a hamburger button into the topbar, collapses the nav into a
+  // slide-down panel below it, and wires up close-on-link / ESC / outside-click.
+  // Single source of truth for mobile nav across every page.
+  // ============================================================================
+
+  const MobileNav = {
+    _overlayEl: null,
+    _toggleEl: null,
+    _pillsEl: null,
+    _themeBtnEl: null,
+
+    init() {
+      const topbar = document.querySelector('.topbar');
+      const pills = document.querySelector('.nav-pills');
+      if (!topbar || !pills) return;
+      if (document.getElementById('mobileNavToggle')) return;
+
+      this._pillsEl = pills;
+      if (!pills.id) pills.id = 'primaryNav';
+
+      // 1) Inject the hamburger toggle before the pills.
+      this._toggleEl = document.createElement('button');
+      this._toggleEl.id = 'mobileNavToggle';
+      this._toggleEl.className = 'mobile-nav-toggle';
+      this._toggleEl.type = 'button';
+      this._toggleEl.setAttribute('aria-label', 'Open navigation menu');
+      this._toggleEl.setAttribute('aria-expanded', 'false');
+      this._toggleEl.setAttribute('aria-controls', pills.id);
+      this._toggleEl.innerHTML =
+        '<i class="fas fa-bars" aria-hidden="true"></i>' +
+        '<i class="fas fa-times" aria-hidden="true"></i>';
+      topbar.insertBefore(this._toggleEl, pills);
+
+      // 2) Inject a backdrop overlay behind the menu.
+      this._overlayEl = document.createElement('div');
+      this._overlayEl.className = 'mobile-nav-overlay';
+      this._overlayEl.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(this._overlayEl);
+
+      // 3) Move a copy of the theme toggle INTO the menu for one-handed
+      //    access on mobile. Keep the original in the topbar for desktop.
+      const existingThemeBtn = topbar.querySelector('.theme-toggle');
+      if (existingThemeBtn) {
+        const menuToggle = document.createElement('button');
+        menuToggle.type = 'button';
+        menuToggle.className = 'theme-toggle-mobile';
+        menuToggle.innerHTML =
+          '<span><i class="fas fa-circle-half-stroke" aria-hidden="true"></i> Theme</span>' +
+          '<span class="theme-state">' +
+          (document.documentElement.getAttribute('data-theme') === 'dark' ? 'Dark' : 'Light') +
+          '</span>';
+        menuToggle.addEventListener('click', () => {
+          existingThemeBtn.click();
+          const next = document.documentElement.getAttribute('data-theme');
+          menuToggle.querySelector('.theme-state').textContent =
+            next === 'dark' ? 'Dark' : 'Light';
+        });
+        pills.appendChild(menuToggle);
+      }
+
+      // 4) Wire up open / close.
+      this._toggleEl.addEventListener('click', () => this.toggle());
+      this._overlayEl.addEventListener('click', () => this.close());
+
+      // Close after the user picks a destination.
+      pills.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => this.close());
+      });
+
+      // Close on Escape, return focus to the toggle.
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen()) {
+          this.close();
+          if (this._toggleEl) this._toggleEl.focus();
+        }
+      });
+
+      // Auto-close if the viewport grows past the mobile breakpoint while
+      // the menu is open (e.g. user rotates tablet to landscape).
+      const mql = window.matchMedia('(min-width: 769px)');
+      const onMqlChange = (ev) => { if (ev.matches && this.isOpen()) this.close(); };
+      if (mql.addEventListener) mql.addEventListener('change', onMqlChange);
+      else if (mql.addListener) mql.addListener(onMqlChange);
+    },
+
+    isOpen() {
+      return this._pillsEl && this._pillsEl.classList.contains('open');
+    },
+
+    open() {
+      if (!this._pillsEl) return;
+      this._pillsEl.classList.add('open');
+      this._overlayEl && this._overlayEl.classList.add('visible');
+      document.body.classList.add('nav-open');
+      this._toggleEl.setAttribute('aria-expanded', 'true');
+      this._toggleEl.setAttribute('aria-label', 'Close navigation menu');
+    },
+
+    close() {
+      if (!this._pillsEl) return;
+      this._pillsEl.classList.remove('open');
+      this._overlayEl && this._overlayEl.classList.remove('visible');
+      document.body.classList.remove('nav-open');
+      this._toggleEl.setAttribute('aria-expanded', 'false');
+      this._toggleEl.setAttribute('aria-label', 'Open navigation menu');
+    },
+
+    toggle() { this.isOpen() ? this.close() : this.open(); }
+  };
+
+  // ============================================================================
   // INITIALIZATION
   // ============================================================================
 
@@ -475,6 +609,8 @@
     init() {
       // Initialize all modules
       ThemeManager.init();
+      SkipLink.init();
+      MobileNav.init();
       ScrollProgress.init();
       SmoothAnimations.init();
       ParallaxEffect.init();

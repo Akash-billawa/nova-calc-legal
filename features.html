@@ -126,25 +126,6 @@ body {
       -moz-osx-font-smoothing: grayscale;
     }
 
-    .skip-link {
-      position: absolute;
-      left: 16px;
-      top: 16px;
-      z-index: 1000;
-      transform: translateY(-140%);
-      padding: 10px 14px;
-      border-radius: 8px;
-      background: var(--text-primary);
-      color: var(--bg-gradient-start);
-      text-decoration: none;
-      font-weight: 700;
-      transition: transform 0.2s ease;
-    }
-
-    .skip-link:focus {
-      transform: translateY(0);
-    }
-
     .shell {
       max-width: 1200px;
       margin: 0 auto;
@@ -900,64 +881,6 @@ body {
       font-size: 13px;
       color: var(--text-secondary);
       opacity: 0.8;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .shell {
-        padding: var(--spacing-sm);
-        gap: var(--spacing-md);
-      }
-
-      .topbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-sm);
-      }
-    .nav-pills {
-        width: 100%;
-        justify-content: flex-start;
-      }
-
-      .hero {
-        padding: var(--spacing-xl) var(--spacing-md);
-      }
-
-      .kpi-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .panel {
-        padding: var(--spacing-lg);
-      }
-
-      .button-row {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-        text-align: center;
-      }
-
-      .footer-content {
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .footer-links {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .footer-links a {
-        padding: 6px 12px;
-        font-size: 13px;
-      }
     }
 
     /* Accessibility */

@@ -672,52 +672,6 @@ body {
       opacity: 0.8;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .shell {
-        padding: var(--spacing-sm);
-        gap: var(--spacing-md);
-      }
-
-      .topbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-sm);
-      }
-    .nav-pills {
-        width: 100%;
-        justify-content: flex-start;
-      }
-
-      .legal-page {
-        padding: var(--spacing-lg);
-      }
-
-      .legal-page h1 {
-        font-size: 32px;
-      }
-
-      .legal-page h2 {
-        font-size: 20px;
-        margin-top: var(--spacing-lg);
-      }
-
-      .footer-content {
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .footer-links {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .footer-links a {
-        padding: 6px 12px;
-        font-size: 13px;
-      }
-    }
-
     /* Accessibility */
     @media (prefers-reduced-motion: reduce) {
       * {
@@ -758,7 +712,7 @@ body {
     </button>
   </header>
 
-    <main class="legal-page glass">
+    <main id="main" class="legal-page glass">
       <h1>Privacy Policy</h1>
       <p class="updated"><strong>Last updated:</strong> June 7, 2026</p>
 

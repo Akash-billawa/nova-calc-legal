@@ -354,17 +354,6 @@
     .footer-social i { font-size: 18px; }
     .footer-copyright { padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.15); font-size: 13px; color: var(--text-secondary); opacity: 0.8; }
 
-    @media (max-width: 768px) {
-      .shell { padding: var(--spacing-sm); gap: var(--spacing-md); }
-      .topbar { flex-direction: column; align-items: flex-start; gap: var(--spacing-sm); }
-      .nav-pills { width: 100%; justify-content: flex-start; }
-      .legal-page { padding: var(--spacing-lg); }
-      .legal-page h1 { font-size: 32px; }
-      .legal-page h2 { font-size: 20px; margin-top: var(--spacing-lg); }
-      .footer-content { flex-direction: column; gap: 16px; }
-      .footer-links { flex-wrap: wrap; justify-content: center; }
-      .footer-links a { padding: 6px 12px; font-size: 13px; }
-    }
     @media (prefers-reduced-motion: reduce) {
       * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     }
@@ -394,7 +383,7 @@
       </button>
     </header>
 
-    <main class="legal-page glass">
+    <main id="main" class="legal-page glass">
       <h1>Legal &amp; Disclaimers</h1>
       <p class="updated"><strong>Last updated:</strong> June 7, 2026</p>
 
