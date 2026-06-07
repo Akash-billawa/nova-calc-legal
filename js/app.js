@@ -530,26 +530,8 @@
       this._overlayEl.setAttribute('aria-hidden', 'true');
       document.body.appendChild(this._overlayEl);
 
-      // 3) Move a copy of the theme toggle INTO the menu for one-handed
-      //    access on mobile. Keep the original in the topbar for desktop.
-      const existingThemeBtn = topbar.querySelector('.theme-toggle');
-      if (existingThemeBtn) {
-        const menuToggle = document.createElement('button');
-        menuToggle.type = 'button';
-        menuToggle.className = 'theme-toggle-mobile';
-        menuToggle.innerHTML =
-          '<span><i class="fas fa-circle-half-stroke" aria-hidden="true"></i> Theme</span>' +
-          '<span class="theme-state">' +
-          (document.documentElement.getAttribute('data-theme') === 'dark' ? 'Dark' : 'Light') +
-          '</span>';
-        menuToggle.addEventListener('click', () => {
-          existingThemeBtn.click();
-          const next = document.documentElement.getAttribute('data-theme');
-          menuToggle.querySelector('.theme-state').textContent =
-            next === 'dark' ? 'Dark' : 'Light';
-        });
-        pills.appendChild(menuToggle);
-      }
+      // 3) Theme toggle is intentionally NOT duplicated in the mobile menu.
+      //    The original `.theme-toggle` in the topbar handles all viewports.
 
       // 4) Wire up open / close.
       this._toggleEl.addEventListener('click', () => this.toggle());
