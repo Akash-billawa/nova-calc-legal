@@ -599,11 +599,13 @@ main {
       height: 18px;
     }
 
-    .features,
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
+    @media (min-width: 769px) {
+      .features,
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
     }
 
     .feature {
