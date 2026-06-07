@@ -546,6 +546,8 @@ body.nav-open {
     border-color: var(--pill-active-border, rgba(91, 143, 249, 0.4));
   }
   /* Theme toggle inside the menu — single tap target. */
+  .nav-pills .theme-toggle-mobile { display: none; }
+  @media (max-width: 768px) {
   .nav-pills .theme-toggle-mobile {
     display: flex;
     align-items: center;
@@ -567,6 +569,7 @@ body.nav-open {
   [data-theme="dark"] .nav-pills .theme-toggle-mobile {
     background: linear-gradient(135deg, rgba(15, 23, 38, 0.46) 0%, rgba(8, 13, 24, 0.32) 100%);
     border-color: rgba(196, 232, 255, 0.12);
+  }
   }
 
   /* ----- Hero / typography ----- */
