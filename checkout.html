@@ -1,341 +1,202 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>NovaCalc - Secure Checkout</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-    <title>NovaCalc - Secure Checkout</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
+body{
+    background:#000;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+}
 
+.container{
+    width:320px;
+}
 
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+.loader{
+    width:50px;
+    height:50px;
+    margin:0 auto 20px;
+    border:4px solid #333;
+    border-top:4px solid #00E5FF;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
 
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
 
+h2{
+    margin-bottom:10px;
+}
 
-    <style>
-
-        *{
-
-            margin:0;
-
-            padding:0;
-
-            box-sizing:border-box;
-
-        }
-
-
-
-        body{
-
-            font-family:Arial,Helvetica,sans-serif;
-
-            background:#000;
-
-            color:#fff;
-
-            display:flex;
-
-            justify-content:center;
-
-            align-items:center;
-
-            height:100vh;
-
-            text-align:center;
-
-        }
-
-
-
-        .container{
-
-            max-width:320px;
-
-        }
-
-
-
-        .loader{
-
-            width:48px;
-
-            height:48px;
-
-            border:4px solid #333;
-
-            border-top:4px solid #00E5FF;
-
-            border-radius:50%;
-
-            animation:spin 1s linear infinite;
-
-            margin:0 auto 20px;
-
-        }
-
-
-
-        @keyframes spin{
-
-            to{
-
-                transform:rotate(360deg);
-
-            }
-
-        }
-
-
-
-        h2{
-
-            margin-bottom:10px;
-
-        }
-
-
-
-        p{
-
-            color:#aaa;
-
-        }
-
-    </style>
+p{
+    color:#aaa;
+    line-height:1.5;
+}
+</style>
 
 </head>
 
 <body>
 
-
-
 <div class="container">
-
     <div class="loader"></div>
-
-
 
     <h2>NovaCalc</h2>
 
-
-
     <p>Preparing secure payment...</p>
-
 </div>
-
-
 
 <script>
 
-
-
 const params = new URLSearchParams(window.location.search);
 
-
-
 const orderId = params.get("order_id");
-
-const amount = params.get("amount");
-
 const deviceId = params.get("device_id");
+const amount = Number(params.get("amount"));
 
-
-
-if(!orderId || !amount || !deviceId){
-
+if (!orderId || !deviceId || !Number.isFinite(amount) || amount <= 0) {
     alert("Invalid payment request.");
-
-    throw new Error("Missing required URL parameters.");
-
+    throw new Error("Invalid URL parameters.");
 }
 
-
+let paymentOpened = false;
 
 const options = {
 
-
-
     key: "rzp_live_SZJDJRthgaQxuR",
-
-
 
     amount: amount,
 
-
-
     currency: "INR",
-
-
 
     order_id: orderId,
 
-
-
     name: "NovaCalc",
-
-
 
     description: "Unlock Premium",
 
-
-
     theme:{
-
         color:"#00E5FF"
-
     },
 
+    handler: async function(response){
 
+        try{
 
-    handler: function (response){
+            const res = await fetch(
+                "https://verifydesktoppayment-2wa5zywtyq-uc.a.run.app",
+                {
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify({
 
+                        razorpay_order_id:response.razorpay_order_id,
 
+                        razorpay_payment_id:response.razorpay_payment_id,
 
-        fetch("https://verifydesktoppayment-2wa5zywtyq-uc.a.run.app",{
+                        razorpay_signature:response.razorpay_signature,
 
+                        device_id:deviceId
 
+                    })
+                }
+            );
 
-            method:"POST",
-
-
-
-            headers:{
-
-                "Content-Type":"application/json"
-
-            },
-
-
-
-            body:JSON.stringify({
-
-
-
-                razorpay_order_id:response.razorpay_order_id,
-
-
-
-                razorpay_payment_id:response.razorpay_payment_id,
-
-
-
-                razorpay_signature:response.razorpay_signature,
-
-
-
-                device_id:deviceId
-
-
-
-            })
-
-
-
-        })
-
-
-
-        .then(res=>res.json())
-
-
-
-        .then(data=>{
-
-
+            const data = await res.json();
 
             if(data.verified){
 
-
-
-                alert("✅ Payment Successful!");
-
-
-
-                window.close();
-
-
+                document.body.innerHTML = `
+                <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#000;color:#fff;font-family:Arial;">
+                    <div style="text-align:center">
+                        <h2>✅ Payment Successful</h2>
+                        <br>
+                        <p>You can now return to NovaCalc.</p>
+                    </div>
+                </div>`;
 
             }else{
 
-
-
-                alert("❌ Payment Verification Failed");
-
-
+                alert("Payment verification failed.");
 
             }
 
+        }catch(err){
 
+            console.error(err);
 
-        })
+            alert(
+                "Unable to verify payment.\n\nIf money was deducted, please contact support with your Payment ID."
+            );
 
-
-
-        .catch(error=>{
-
-
-
-            console.error(error);
-
-
-
-            alert("❌ Server Error");
-
-
-
-        });
-
-
+        }
 
     },
-
-
 
     modal:{
 
         ondismiss:function(){
 
+            alert("Payment cancelled.");
 
+        },
 
-            alert("Payment Cancelled.");
+        confirm_close:true,
 
-
-
-        }
+        escape:true
 
     }
 
-
-
 };
-
-
 
 window.onload = function(){
 
+    if(paymentOpened) return;
 
+    paymentOpened = true;
 
     const rzp = new Razorpay(options);
 
+    rzp.on("payment.failed",function(response){
 
+        console.error(response.error);
+
+        alert(
+            "Payment Failed\n\n" +
+            response.error.description
+        );
+
+    });
 
     rzp.open();
 
-
-
 };
-
-
 
 </script>
 
-
-
 </body>
-
 </html>
